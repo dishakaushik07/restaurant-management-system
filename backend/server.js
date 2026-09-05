@@ -10,6 +10,8 @@ const { connectDB } = require('./config/db');
 // Routes
 const authRoutes = require('./routes/authRoutes');
 const orderRoutes = require('./routes/orderRoutes');
+const tableRoutes = require('./routes/tableRoutes');
+const robotRoutes = require('./routes/robotRoutes');
 
 // Initialize Express app
 const app = express();
@@ -29,6 +31,8 @@ app.use(morgan('dev'));
 // Define Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/tables', tableRoutes);
+app.use('/api/robots', robotRoutes);
 
 // Basic Health Check Route
 app.get('/api/health', (req, res) => {
