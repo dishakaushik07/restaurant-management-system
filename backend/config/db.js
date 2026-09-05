@@ -2,17 +2,23 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/restaurant-management-system', {
-      // These options are no longer strictly necessary in Mongoose 6+, but good for compatibility if older version is used
+    const conn = await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/rms_core', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
+    console.log(`Core MongoDB Connected: ${conn.connection.host}`);
+    return conn;
   } catch (error) {
     console.error(`Error connecting to MongoDB: ${error.message}`);
     process.exit(1);
   }
 };
 
-module.exports = connectDB;
+const getTenantDB = (tenantId) => {
+  if (mongoose.connection.readyState !== 1) {
+    throw new Error('Database not connected');
+  }
+  return mongoose.connection.useDb(`rms_tenant_${tenantId}`, { useCache: true });
+};
+
+module.exports = { connectDB, getTenantDB };
