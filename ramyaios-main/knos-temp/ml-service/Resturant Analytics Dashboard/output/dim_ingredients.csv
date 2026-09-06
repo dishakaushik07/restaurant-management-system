@@ -1,0 +1,161 @@
+ingredient_id,ingredient_name,unit,supplier_id,unit_cost_inr
+1,Paneer,kg,31,745.34
+2,Chicken,dozen,25,740.47
+3,Mutton,litre,10,175.72
+4,Basmati Rice,dozen,11,369.34
+5,Wheat Flour,litre,33,747.85
+6,Tomato,kg,8,869.91
+7,Onion,dozen,31,253.06
+8,Garlic,kg,34,522.53
+9,Ginger,kg,21,760.15
+10,Green Chilli,dozen,31,687.86
+11,Cooking Oil,dozen,16,583.46
+12,Butter,packet,16,430.32
+13,Milk,dozen,15,705.03
+14,Cream,dozen,22,802.48
+15,Cheese,packet,24,758.55
+16,Capsicum,dozen,2,865.88
+17,Potato,kg,32,852.71
+18,Coriander Leaves,dozen,22,356.98
+19,Yogurt,litre,12,496.54
+20,Garam Masala,dozen,34,498.35
+21,Turmeric Powder,kg,34,679.57
+22,Red Chilli Powder,dozen,32,179.99
+23,Salt,litre,2,159.69
+24,Sugar,dozen,13,515.01
+25,Eggs,kg,18,790.75
+26,Fish,litre,32,719.56
+27,Corn,dozen,18,32.41
+28,Cabbage,dozen,25,290.38
+29,Carrot,kg,18,735.31
+30,Noodles,packet,20,173.86
+31,Soy Sauce,litre,3,746.9
+32,Vinegar,litre,2,880.75
+33,Lemon,kg,34,318.65
+34,Mint Leaves,packet,5,442.3
+35,Cashew Nuts,litre,35,602.16
+36,Ghee,dozen,26,853.79
+37,Curd,dozen,17,846.49
+38,Bread,kg,9,582.84
+39,Beans,litre,13,848.1
+40,Peas,litre,9,586.55
+41,Paneer,packet,20,330.14
+42,Chicken,litre,22,786.38
+43,Mutton,litre,34,240.24
+44,Basmati Rice,litre,21,311.71
+45,Wheat Flour,kg,3,721.65
+46,Tomato,dozen,34,147.53
+47,Onion,litre,10,481.97
+48,Garlic,packet,31,115.98
+49,Ginger,packet,17,389.79
+50,Green Chilli,packet,16,281.6
+51,Cooking Oil,packet,22,421.16
+52,Butter,dozen,23,628.58
+53,Milk,litre,16,652.27
+54,Cream,dozen,11,77.94
+55,Cheese,packet,31,352.21
+56,Capsicum,packet,15,473.48
+57,Potato,packet,2,164.38
+58,Coriander Leaves,dozen,8,716.84
+59,Yogurt,kg,2,194.19
+60,Garam Masala,kg,26,151.25
+61,Turmeric Powder,kg,32,371.88
+62,Red Chilli Powder,dozen,13,
+63,Salt,kg,23,124.65
+64,Sugar,kg,20,167.57
+65,Eggs,packet,35,412.37
+66,Fish,dozen,15,881.84
+67,Corn,dozen,5,268.35
+68,Cabbage,dozen,35,819.86
+69,Carrot,litre,31,244.48
+70,Noodles,packet,1,763.99
+71,Soy Sauce,dozen,2,780.77
+72,Vinegar,packet,23,120.64
+73,Lemon,kg,13,137.14
+74,Mint Leaves,dozen,33,116.15
+75,Cashew Nuts,litre,3,879.14
+76,Ghee,packet,24,584.11
+77,Curd,litre,24,215.1
+78,Bread,litre,31,262.8
+79,Beans,litre,28,-550.51
+80,Peas,packet,13,356.9
+81,Paneer,litre,15,86.6
+82,Chicken,dozen,8,829.91
+83,Mutton,packet,8,249.26
+84,Basmati Rice,kg,5,216.3
+85,Wheat Flour,kg,30,684.23
+86,Tomato,kg,14,277.19
+87,Onion,kg,23,654.92
+88,Garlic,dozen,9,398.77
+89,Ginger,dozen,13,403.94
+90,Green Chilli,litre,16,134.38
+91,Cooking Oil,litre,25,
+92,Butter,kg,16,375.59
+93,Milk,packet,11,329.6
+94,Cream,dozen,12,116.82
+95,Cheese,kg,34,782.6
+96,Capsicum,litre,19,633.67
+97,Potato,litre,16,726.34
+98,Coriander Leaves,dozen,34,-10.41
+99,Yogurt,dozen,30,340.64
+100,Garam Masala,packet,21,41.33
+101,Turmeric Powder,packet,26,
+102,Red Chilli Powder,litre,5,39.51
+103,Salt,packet,26,728.86
+104,Sugar,litre,10,787.89
+105,Eggs,kg,16,453.16
+106,Fish,kg,5,384.97
+107,Corn,litre,21,466.02
+108,Cabbage,litre,10,495.84
+109,Carrot,litre,1,493.05
+110,Noodles,dozen,29,90.09
+111,Soy Sauce,dozen,1,253.16
+112,Vinegar,litre,10,824.11
+113,Lemon,packet,34,428.6
+114,Mint Leaves,dozen,19,446.57
+115,Cashew Nuts,litre,24,833.02
+116,Ghee,packet,18,547.23
+117,Curd,dozen,3,803.81
+118,Bread,packet,35,86.03
+119,Beans,packet,34,716.63
+120,Peas,dozen,16,575.86
+121,Paneer,kg,12,
+122,Chicken,dozen,12,84.3
+123,Mutton,dozen,27,167.11
+124,Basmati Rice,packet,6,785.16
+125,Wheat Flour,packet,22,701.99
+126,Tomato,litre,4,31.44
+127,Onion,kg,8,234.34
+128,Garlic,packet,5,164.82
+129,Ginger,litre,5,263.61
+130,Green Chilli,litre,31,584.53
+131,Cooking Oil,kg,9,500.26
+132,Butter,kg,32,843.94
+133,Milk,litre,13,753.87
+134,Cream,litre,21,487.66
+135,Cheese,packet,2,779.07
+136,Capsicum,kg,28,270.0
+137,Potato,dozen,10,20.97
+138,Coriander Leaves,litre,23,458.9
+139,Yogurt,kg,10,610.67
+140,Garam Masala,dozen,8,870.02
+141,Turmeric Powder,kg,23,129.26
+142,Red Chilli Powder,packet,25,865.07
+143,Salt,litre,23,869.02
+144,Sugar,packet,7,526.45
+145,Eggs,packet,4,759.86
+146,Fish,kg,24,541.25
+147,Corn,dozen,29,782.32
+148,Cabbage,litre,18,518.7
+149,Carrot,kg,11,170.4
+150,Noodles,dozen,12,330.96
+151,Soy Sauce,packet,25,342.4
+152,Vinegar,litre,23,542.0
+153,Lemon,dozen,29,313.94
+154,Mint Leaves,litre,5,290.75
+155,Cashew Nuts,dozen,15,606.39
+156,Ghee,dozen,5,537.22
+157,Curd,litre,29,154.06
+158,Bread,dozen,16,789.36
+159,Beans,litre,7,670.62
+160,Peas,packet,13,267.8

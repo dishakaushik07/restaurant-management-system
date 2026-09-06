@@ -1,0 +1,29 @@
+branch_id,branch_name,city,manager_name,seating_capacity,opening_date
+1,Chennai Garden Branch,Chennai,Deepak Kumar,142,2018-06-03
+2,Patna Highstreet Branch,Patna  ,Diya Joshi,-80,2016-01-14
+3,Indore Uptown Branch,Indore,Ishaan Mehta,79,2016-06-22
+4,Indore Old City Branch,Indore,Suresh Verma,104,2022-01-21
+5,Hyderabad Palm Branch,Hyderabad,Vivaan Nair,42,2017-05-26
+6,Mumbai Lakeview Branch,Mumbai,Ananya Desai,107,2020-07-01
+7,Chennai Central Branch,Chennai,Priya Mehta,39,2018-03-19
+8,Agra Uptown Branch,Agra,Ayaan Desai,141,2022-04-08
+9,Kolkata Palm Branch,Kolkata,Ishaan Desai,124,2019-04-10
+10,Bhopal Highstreet Branch,Bhopal,Amit Agarwal,144,2020-05-02
+11,Bengaluru Riverside Branch,Bengaluru,Neha Sharma,145,2016-10-14
+12,Vadodara Heritage Branch,Vadodara,Kritika Bhatt,101,2022-03-29
+13,Hyderabad Riverside Branch,Hyderabad,Ananya Bansal,105,2019-11-20
+14,Surat Heritage Branch,Surat,Reyansh Reddy,36,2017-12-13
+15,Kanpur Riverside Branch,Kanpur,Aditya Joshi,81,2020-07-25
+16,Chennai Old City Branch,Chennai,Aarav Bansal,145,2021-09-04
+17,Pune Heritage Branch,Pune,Ananya Desai,37,2020-12-04
+18,Patna Central Branch,patna,Isha Verma,86,2019-04-02
+19,Chennai Garden Branch,Chennai,Arjun Agarwal,57,2017-09-11
+20,Patna Central Branch,Patna,Pari Nair,142,2016-04-25
+21,Kanpur Riverside Branch,Kanpur,Rahul Bhatt,129,2021-06-07
+22,Patna Metro Branch,Patna,Krishna Desai,90,2017-07-24
+23,Mumbai Garden Branch,Mumbai,Krishna Sharma,87,2022-08-28
+24,Pune Old City Branch,Pune,Deepak Singh,123,2017-07-21
+25,Hyderabad Garden Branch,Hyderabad,Reyansh Reddy,26,2021-01-04
+26,Bengaluru Uptown Branch,Bengaluru,Isha Nair,97,2022-01-15
+27,Nagpur Lakeview Branch,Nagpur,Anika Bhatt,62,2018-01-13
+28,Nagpur Heritage Branch,Nagpur,Shreya Verma,149,2016-08-20

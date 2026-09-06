@@ -1,0 +1,240 @@
+menu_item_id,item_name,category_id,veg_type,cost_price_inr,selling_price_inr
+1,Paneer Tikka,1,Veg,195.98,588.33
+2,Paneer Tikka,1,Veg,207.54,522.4
+3,Paneer Tikka,1,Veg,347.86,622.8
+4,Paneer Tikka,1,Veg,240.8,693.08
+5,Chicken 65,1,Veg,400.34,874.25
+6,Chicken 65,1,Veg,371.78,727.28
+7,Chicken 65,1,Veg,384.61,732.49
+8,Veg Spring Roll,1,Veg,153.22,481.65
+9,Veg Spring Roll,1,Veg,445.28,778.61
+10,Veg Spring Roll,1,Veg,28.78,82.7
+11,Chilli Potato,1,Veg,106.71,178.57
+12,Chilli Potato,1,Veg,392.48,730.33
+13,Chilli Potato,1,Non-Veg,119.27,358.05
+14,Chilli Potato,1,Veg,219.33,384.2
+15,Seekh Kebab,1,Non-Veg,348.58,885.71
+16,Seekh Kebab,1,Veg,274.99,602.58
+17,Seekh Kebab,1,Non-Veg,310.14,788.1
+18,Seekh Kebab,1,Veg,212.28,666.89
+19,Tomato Soup,2,Veg,114.83,300.9
+20,Tomato Soup,2,Non-Veg,,222.64
+21,Tomato Soup,2,Veg,254.38,476.26
+22,Tomato Soup,2,Veg,323.33,740.46
+23,Tomato Soup,2,Non-Veg,401.82,888.99
+24,Tomato Soup,2,Veg,139.9,332.1
+25,Sweet Corn Soup,2,Veg,231.32,499.87
+26,Sweet Corn Soup,2,Veg,400.39,878.59
+27,Sweet Corn Soup,2,Veg,-111.52,73.28
+28,Hot & Sour Soup,2,Non-Veg,269.27,679.01
+29,Hot & Sour Soup,2,Veg,144.57,428.17
+30,Hot & Sour Soup,2,Veg,85.31,193.21
+31,Manchow Soup,2,Veg,221.7,418.44
+32,Manchow Soup,2,Veg,497.09,949.54
+33,Manchow Soup,2,Veg,190.2,325.51
+34,Paneer Butter Masala,3,Veg,281.78,850.85
+35,Paneer Butter Masala,3,Veg,109.02,241.73
+36,Paneer Butter Masala,3,Veg,55.5,101.18
+37,Dal Makhani,3,Veg,94.13,302.5
+38,Dal Makhani,3,Veg,100.05,174.37
+39,Dal Makhani,3,Veg,146.31,382.82
+40,Dal Makhani,3,Veg,476.33,828.14
+41,Dal Makhani,3,Veg,344.59,857.92
+42,Veg Kolhapuri,3,Veg,189.71,404.48
+43,Veg Kolhapuri,3,Veg,212.62,455.48
+44,Veg Kolhapuri,3,Veg,293.57,883.85
+45,Malai Kofta,3,Veg,153.42,489.7
+46,Malai Kofta,3,Non-Veg,102.87,269.47
+47,Malai Kofta,3,Non-Veg,146.0,304.22
+48,Malai Kofta,3,Veg,95.25,201.38
+49,Malai Kofta,3,Non-Veg,163.53,292.87
+50,Malai Kofta,3,Veg,131.62,429.72
+51,Chana Masala,3,Veg,220.4,634.85
+52,Chana Masala,3,Veg,140.38,422.87
+53,Chana Masala,3,Non-Veg,94.01,284.67
+54,Butter Chicken,4,Non-Veg,315.07,855.69
+55,Butter Chicken,4,Non-Veg,544.01,946.74
+56,Butter Chicken,4,Non-Veg,35.97,74.03
+57,Butter Chicken,4,Non-Veg,111.15,270.64
+58,Butter Chicken,4,Non-Veg,355.57,763.57
+59,Mutton Rogan Josh,4,Non-Veg,224.13,521.65
+60,Mutton Rogan Josh,4,Non-Veg,407.13,870.78
+61,Mutton Rogan Josh,4,Non-Veg,101.95,227.21
+62,Mutton Rogan Josh,4,Non-Veg,279.57,869.53
+63,Mutton Rogan Josh,4,Non-Veg,63.15,194.67
+64,Mutton Rogan Josh,4,Non-Veg,77.52,171.05
+65,Chicken Curry,4,Non-Veg,406.99,865.47
+66,Chicken Curry,4,Non-Veg,144.87,279.28
+67,Chicken Curry,4,Non-Veg,380.33,732.97
+68,Chicken Curry,4,Non-Veg,227.79,551.89
+69,Fish Curry,4,Non-Veg,29.63,88.67
+70,Fish Curry,4,Non-Veg,65.4,197.97
+71,Fish Curry,4,Non-Veg,95.85,181.85
+72,Fish Curry,4,Non-Veg,421.23,746.16
+73,Fish Curry,4,Non-Veg,209.74,428.68
+74,Egg Curry,4,Non-Veg,334.29,747.0
+75,Egg Curry,4,Non-Veg,90.26,216.47
+76,Egg Curry,4,Non-Veg,161.09,278.52
+77,Butter Naan,5,Veg,211.28,696.24
+78,Butter Naan,5,Veg,309.93,604.71
+79,Butter Naan,5,Veg,276.16,471.7
+80,Tandoori Roti,5,Veg,218.23,415.49
+81,Tandoori Roti,5,Veg,343.85,896.56
+82,Tandoori Roti,5,Veg,179.8,387.37
+83,Tandoori Roti,5,Veg,244.54,453.32
+84,Garlic Naan,5,Veg,417.66,838.94
+85,Garlic Naan,5,Veg,142.19,357.3
+86,Garlic Naan,5,Veg,99.37,187.02
+87,Garlic Naan,5,Non-Veg,511.31,872.05
+88,Garlic Naan,5,Veg,313.58,656.84
+89,Lachha Paratha,5,Veg,462.36,871.83
+90,Lachha Paratha,5,Veg,119.26,309.97
+91,Lachha Paratha,5,Veg,292.26,507.73
+92,Lachha Paratha,5,Veg,125.59,390.62
+93,Lachha Paratha,5,Veg,358.79,605.58
+94,Chicken Biryani,6,Non-Veg,52.04,96.56
+95,Chicken Biryani,6,Veg,437.98,772.89
+96,Chicken Biryani,6,Veg,34.34,83.46
+97,Chicken Biryani,6,Veg,104.64,309.05
+98,Chicken Biryani,6,Veg,323.55,817.65
+99,Veg Pulao,6,Veg,29.59,87.72
+100,Veg Pulao,6,Non-Veg,128.02,228.52
+101,Veg Pulao,6,Veg,358.76,763.1
+102,Veg Pulao,6,Non-Veg,109.3,186.57
+103,Mutton Biryani,6,Veg,130.0,288.86
+104,Mutton Biryani,6,Veg,449.27,875.95
+105,Mutton Biryani,6,Veg,99.28,330.72
+106,Mutton Biryani,6,Veg,468.04,865.16
+107,Mutton Biryani,6,Veg,86.67,223.23
+108,Jeera Rice,6,Veg,169.27,391.96
+109,Jeera Rice,6,Veg,215.9,699.68
+110,Jeera Rice,6,Veg,112.58,203.35
+111,Egg Biryani,6,Veg,29.48,62.7
+112,Egg Biryani,6,Veg,248.7,515.8
+113,Egg Biryani,6,Non-Veg,92.73,286.46
+114,Egg Biryani,6,Veg,94.81,177.43
+115,Egg Biryani,6,Veg,241.46,429.87
+116,Egg Biryani,6,Veg,363.32,803.08
+117,Veg Manchurian,7,Veg,426.81,750.7
+118,Veg Manchurian,7,Non-Veg,436.71,907.31
+119,Veg Manchurian,7,Veg,433.81,738.88
+120,Chicken Fried Rice,7,Non-Veg,352.05,691.53
+121,Chicken Fried Rice,7,Veg,53.8,104.05
+122,Chicken Fried Rice,7,Veg,49.64,95.22
+123,Hakka Noodles,7,Non-Veg,129.29,428.82
+124,Hakka Noodles,7,Veg,86.85,265.29
+125,Hakka Noodles,7,Veg,168.54,374.73
+126,Chilli Chicken,7,Veg,417.55,761.15
+127,Chilli Chicken,7,Veg,178.66,405.89
+128,Chilli Chicken,7,Veg,315.06,679.58
+129,Chilli Chicken,7,Veg,105.66,238.12
+130,Chilli Chicken,7,Veg,199.81,651.43
+131,Chilli Chicken,7,Veg,122.57,254.01
+132,Masala Dosa,8,Non-Veg,-206.48,146.01
+133,Masala Dosa,8,Non-Veg,177.71,301.16
+134,Masala Dosa,8,Veg,76.06,138.65
+135,Masala Dosa,8,Veg,316.21,547.06
+136,Masala Dosa,8,Veg,100.44,216.44
+137,Masala Dosa,8,Veg,275.16,462.2
+138,Idli Sambar,8,Veg,140.98,288.49
+139,Idli Sambar,8,Veg,465.38,916.57
+140,Idli Sambar,8,Veg,91.56,297.99
+141,Idli Sambar,8,Veg,89.56,247.42
+142,Idli Sambar,8,Veg,60.23,184.61
+143,Idli Sambar,8,Veg,35.45,79.0
+144,Uttapam,8,Non-Veg,376.47,686.57
+145,Uttapam,8,Veg,131.9,420.11
+146,Uttapam,8,Veg,332.24,884.86
+147,Uttapam,8,Veg,47.65,89.66
+148,Medu Vada,8,Veg,125.88,241.96
+149,Medu Vada,8,Veg,244.73,468.85
+150,Medu Vada,8,Veg,414.07,701.32
+151,Medu Vada,8,Veg,176.62,447.06
+152,Medu Vada,8,Veg,27.85,85.37
+153,Medu Vada,8,Veg,113.93,278.45
+154,Gulab Jamun,9,Veg,221.95,381.57
+155,Gulab Jamun,9,Veg,257.16,616.38
+156,Gulab Jamun,9,Veg,127.01,353.19
+157,Gulab Jamun,9,Veg,398.47,746.24
+158,Gulab Jamun,9,Veg,291.49,716.06
+159,Gulab Jamun,9,Veg,41.7,90.23
+160,Rasmalai,9,Veg,207.53,512.91
+161,Rasmalai,9,Veg,175.05,427.29
+162,Rasmalai,9,Veg,330.91,754.11
+163,Rasmalai,9,Veg,284.07,532.14
+164,Rasmalai,9,Veg,323.26,735.28
+165,Chocolate Brownie,9,Veg,73.71,197.05
+166,Chocolate Brownie,9,Non-Veg,81.99,229.97
+167,Chocolate Brownie,9,Veg,,239.82
+168,Chocolate Brownie,9,Veg,50.08,96.59
+169,Ice Cream Sundae,9,Veg,106.58,307.0
+170,Ice Cream Sundae,9,Veg,253.66,593.95
+171,Ice Cream Sundae,9,Veg,108.14,262.8
+172,Ice Cream Sundae,9,Veg,97.68,171.29
+173,Ice Cream Sundae,9,Veg,27.12,67.14
+174,Ice Cream Sundae,9,Veg,355.25,839.07
+175,Kheer,9,Veg,445.75,823.43
+176,Kheer,9,Veg,275.95,855.5
+177,Kheer,9,Veg,342.84,631.87
+178,Kheer,9,Veg,375.07,827.67
+179,Kheer,9,Veg,-51.52,28.05
+180,Kheer,9,Veg,204.4,669.21
+181,Masala Chai,10,Veg,68.41,221.8
+182,Masala Chai,10,Veg,250.08,567.42
+183,Masala Chai,10,Veg,163.78,320.01
+184,Cold Coffee,10,Veg,191.59,442.4
+185,Cold Coffee,10,Veg,431.96,878.91
+186,Cold Coffee,10,Veg,320.93,740.61
+187,Cold Coffee,10,Veg,208.59,491.22
+188,Fresh Lime Soda,10,Veg,263.62,664.1
+189,Fresh Lime Soda,10,Veg,251.36,583.89
+190,Fresh Lime Soda,10,Non-Veg,78.63,242.85
+191,Mango Lassi,10,Veg,231.32,426.27
+192,Mango Lassi,10,Veg,-218.01,175.51
+193,Mango Lassi,10,Veg,112.2,256.38
+194,Buttermilk,10,Veg,356.6,623.28
+195,Buttermilk,10,Veg,229.91,388.96
+196,Buttermilk,10,Veg,286.7,553.42
+197,Buttermilk,10,Veg,75.59,177.7
+198,Buttermilk,10,Veg,306.01,622.85
+199,Green Salad,11,Veg,404.35,804.44
+200,Green Salad,11,Veg,115.71,339.07
+201,Green Salad,11,Non-Veg,95.64,201.54
+202,Green Salad,11,Veg,,692.8
+203,Green Salad,11,Veg,193.3,583.13
+204,Caesar Salad,11,Veg,263.13,602.97
+205,Caesar Salad,11,Veg,87.65,187.62
+206,Caesar Salad,11,Veg,32.31,64.53
+207,Caesar Salad,11,Non-Veg,159.85,327.45
+208,Caesar Salad,11,Non-Veg,126.73,256.81
+209,Fruit Salad,11,Veg,449.3,850.11
+210,Fruit Salad,11,Veg,122.18,213.48
+211,Fruit Salad,11,Veg,363.2,763.32
+212,Fruit Salad,11,Veg,,158.23
+213,Fruit Salad,11,Veg,110.98,257.83
+214,Kachumber Salad,11,Veg,214.78,409.75
+215,Kachumber Salad,11,Veg,62.67,152.94
+216,Kachumber Salad,11,Veg,127.79,344.05
+217,Kachumber Salad,11,Veg,241.02,579.07
+218,Kachumber Salad,11,Veg,65.09,210.67
+219,Kachumber Salad,11,Veg,492.72,879.2
+220,Margherita Pizza,12,Veg,134.95,241.86
+221,Margherita Pizza,12,Non-Veg,149.39,268.71
+222,Margherita Pizza,12,Veg,100.55,330.92
+223,Margherita Pizza,12,Veg,34.59,77.85
+224,Margherita Pizza,12,Veg,396.67,730.68
+225,Farmhouse Pizza,12,Non-Veg,112.85,222.18
+226,Farmhouse Pizza,12,Veg,319.44,609.14
+227,Farmhouse Pizza,12,Non-Veg,458.68,925.93
+228,Farmhouse Pizza,12,Non-Veg,68.7,165.52
+229,White Sauce Pasta,12,Non-Veg,43.68,98.54
+230,White Sauce Pasta,12,Veg,316.24,539.82
+231,White Sauce Pasta,12,Veg,221.11,388.84
+232,White Sauce Pasta,12,Veg,132.0,314.5
+233,White Sauce Pasta,12,Non-Veg,466.09,879.85
+234,Red Sauce Pasta,12,Veg,184.66,493.5
+235,Red Sauce Pasta,12,Veg,143.08,418.43
+236,Red Sauce Pasta,12,Veg,169.4,510.31
+237,Red Sauce Pasta,12,Non-Veg,51.95,109.77
+238,Red Sauce Pasta,12,Non-Veg,244.09,624.16
+239,Red Sauce Pasta,12,Veg,184.8,598.04

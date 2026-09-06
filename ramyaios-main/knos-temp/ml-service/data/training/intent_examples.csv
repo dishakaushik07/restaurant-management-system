@@ -1,0 +1,26 @@
+text,intent
+Where is my order?,ORDER_STATUS
+When will my food arrive?,ORDER_STATUS
+How long for table seven order?,ORDER_STATUS
+Is my pizza ready?,ORDER_STATUS
+Track my food please,ORDER_STATUS
+Please call a waiter,CALL_STAFF
+I need assistance,CALL_STAFF
+Can someone come to my table?,CALL_STAFF
+Call staff now,CALL_STAFF
+We need help with the bill,CALL_STAFF
+What time do you open?,FAQ
+Do you have vegetarian food?,FAQ
+What is the wifi password?,FAQ
+Do you accept UPI?,FAQ
+Are there vegan options?,FAQ
+The food was amazing,FEEDBACK
+Service was very slow,FEEDBACK
+I loved the pasta,FEEDBACK
+The soup was cold,FEEDBACK
+Great ambience and staff,FEEDBACK
+Do you have burgers?,MENU_QUERY
+Show me spicy dishes,MENU_QUERY
+Is paneer available?,MENU_QUERY
+What can the robot do?,ROBOT_HELP
+How do I use robot service?,ROBOT_HELP
