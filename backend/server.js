@@ -16,7 +16,10 @@ app.use(cors());
 app.use(express.json());
 
 const categoryRoutes = require('./src/routes/categoryRoutes');
+const menuItemRoutes = require('./src/routes/menuItemRoutes');
+
 app.use('/api/menu/categories', categoryRoutes);
+app.use('/api/menu/items', menuItemRoutes);
 
 // Basic Test Route
 app.get('/api/health', (req, res) => {
