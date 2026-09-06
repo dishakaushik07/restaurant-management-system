@@ -17,9 +17,12 @@ app.use(express.json());
 
 const categoryRoutes = require('./src/routes/categoryRoutes');
 const menuItemRoutes = require('./src/routes/menuItemRoutes');
+const kdsRoutes = require('./src/routes/kdsRoutes');
 
 app.use('/api/menu/categories', categoryRoutes);
 app.use('/api/menu/items', menuItemRoutes);
+app.use('/api/kds', kdsRoutes);
+
 
 // Basic Test Route
 app.get('/api/health', (req, res) => {

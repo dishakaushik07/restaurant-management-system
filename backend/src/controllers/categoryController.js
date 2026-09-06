@@ -47,10 +47,8 @@ exports.getCategories = async (req, res) => {
 exports.updateCategory = async (req, res) => {
     try {
         // req.params.id URL se aayega, req.body update hone wala data hai
-        const category = await Category.findByIdAndUpdate(req.params.id, req.body, {
-            new: true, // Naya updated document return karega
-            runValidators: true // Schema ke rules dobara check karega
-        });
+        const category = await Category.findByIdAndUpdate(req.params.id, req.body,
+         { returnDocument: 'after', runValidators: true });
 
         if (!category) {
             return res.status(404).json({ success: false, message: "Category not found" });
