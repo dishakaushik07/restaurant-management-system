@@ -18,10 +18,12 @@ app.use(express.json());
 const categoryRoutes = require('./src/routes/categoryRoutes');
 const menuItemRoutes = require('./src/routes/menuItemRoutes');
 const kdsRoutes = require('./src/routes/kdsRoutes');
+const fleetRoutes = require('./src/routes/fleetRoutes');
 
 app.use('/api/menu/categories', categoryRoutes);
 app.use('/api/menu/items', menuItemRoutes);
 app.use('/api/kds', kdsRoutes);
+app.use('/api/fleet', fleetRoutes);
 
 
 // Basic Test Route
