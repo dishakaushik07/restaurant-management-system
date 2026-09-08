@@ -39,8 +39,8 @@ export default function SignupPage() {
     <div className="min-h-screen bg-gray-950 flex flex-col justify-center py-12 sm:px-6 lg:px-8 font-sans text-white">
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
         <Link href="/" className="inline-flex items-center gap-2">
-          <img src="/logo.png" alt="Kalvix Nexus Logo" className="w-10 h-10 object-contain" />
-          <span className="text-2xl font-bold tracking-tight">Kalvix Nexus</span>
+          <div className="grid h-10 w-10 place-items-center rounded-md bg-yellow-500 text-lg font-black text-black">R</div>
+          <span className="text-2xl font-bold tracking-tight">RAMYA</span>
         </Link>
         <h2 className="mt-6 text-center text-3xl font-extrabold text-white">Register your Restaurant</h2>
       </div>

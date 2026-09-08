@@ -108,8 +108,8 @@ export default function DashboardLayout({
       {/* Sidebar */}
       <aside className="w-64 bg-page border-r border-border-subtle flex flex-col">
         <div className="p-6 border-b border-border-subtle flex items-center gap-3">
-          <img src="/logo.png" alt="Kalvix Nexus Logo" className="w-8 h-8 object-contain" />
-          <h2 className="text-lg font-black tracking-widest uppercase text-text-main">Owner Panel</h2>
+          <div className="grid h-8 w-8 place-items-center rounded-md bg-yellow-500 text-sm font-black text-black">R</div>
+          <h2 className="text-lg font-black tracking-widest uppercase text-text-main">RAMYA</h2>
         </div>
         <nav className="flex-1 p-4 flex flex-col gap-2 overflow-y-auto">
           {navLinks.map((link, idx) => {

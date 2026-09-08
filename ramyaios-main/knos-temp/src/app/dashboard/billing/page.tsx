@@ -11,6 +11,8 @@ export default function ManualBilling() {
   const [paymentMode, setPaymentMode] = useState('Cash');
   const [selectedItems, setSelectedItems] = useState<{ id: number; name: string; price: number; qty: number }[]>([]);
   const [menuItems, setMenuItems] = useState<{ id: number; name: string; price: number }[]>([]);
+  const [customItemName, setCustomItemName] = useState('');
+  const [customItemPrice, setCustomItemPrice] = useState('');
   
   const [invoicePrefix, setInvoicePrefix] = useState('INV');
   const [restaurantName, setRestaurantName] = useState('YOUR RESTAURANT');
@@ -86,6 +88,15 @@ export default function ManualBilling() {
 
   const handleRemoveItem = (id: number) => {
     setSelectedItems(selectedItems.filter(i => i.id !== id));
+  };
+
+  const handleAddCustomItem = () => {
+    const name = customItemName.trim();
+    const price = Number(customItemPrice);
+    if (!name || !Number.isFinite(price) || price < 0) return;
+    handleAddItem({ id: Date.now(), name, price });
+    setCustomItemName('');
+    setCustomItemPrice('');
   };
 
   const subTotal = selectedItems.reduce((acc, item) => acc + (item.price * item.qty), 0);
@@ -164,13 +175,13 @@ export default function ManualBilling() {
   };
 
   return (
-    <div className="max-w-6xl flex gap-8">
+    <div className="max-w-6xl flex flex-col gap-8 xl:flex-row">
       <div className="flex-1">
         <h1 className="text-3xl font-bold mb-6 text-text-main hide-on-print">Generate Manual Bill</h1>
         
         <div className="bg-panel p-6 rounded-xl shadow-lg border border-border-subtle hide-on-print mb-6">
           <h2 className="text-lg font-bold text-text-main uppercase tracking-widest mb-4">Customer & Bill Details</h2>
-          <div className="grid grid-cols-4 gap-4 mb-4">
+          <div className="grid grid-cols-1 gap-4 mb-4 sm:grid-cols-2 xl:grid-cols-4">
             <div>
               <label className="block text-sm font-bold text-text-muted uppercase tracking-widest mb-1">Customer Name</label>
               <input type="text" value={customerName} onChange={(e) => setCustomerName(e.target.value)} className="block w-full px-3 py-2 border border-border-subtle bg-page rounded-md text-text-main focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 outline-none transition-all" placeholder="e.g. Rahul" />
@@ -199,13 +210,13 @@ export default function ManualBilling() {
           </div>
         </div>
 
-        <div className="bg-panel p-6 rounded-xl shadow-lg border border-border-subtle hide-on-print flex gap-6">
+        <div className="bg-panel p-6 rounded-xl shadow-lg border border-border-subtle hide-on-print flex flex-col gap-6 lg:flex-row">
           {/* Menu Selection */}
-          <div className="flex-1 border-r border-border-subtle pr-6">
+          <div className="flex-1 lg:border-r lg:border-border-subtle lg:pr-6">
             <h2 className="text-lg font-bold text-text-main uppercase tracking-widest mb-4">Select Items</h2>
             <div className="grid grid-cols-2 gap-3 max-h-96 overflow-y-auto pr-2">
               {menuItems.length === 0 ? (
-                <div className="col-span-2 text-sm text-text-muted">No items found. Upload a menu first.</div>
+                <div className="col-span-2 rounded-md border border-dashed border-border-subtle p-4 text-sm text-text-muted">No saved menu items yet. Add a one-off item below to complete this bill.</div>
               ) : (
                 menuItems.map(item => (
                   <button 
@@ -218,6 +229,11 @@ export default function ManualBilling() {
                   </button>
                 ))
               )}
+            </div>
+            <div className="mt-4 grid grid-cols-[minmax(0,1fr)_7rem_auto] gap-2">
+              <input value={customItemName} onChange={(event) => setCustomItemName(event.target.value)} onKeyDown={(event) => event.key === 'Enter' && handleAddCustomItem()} className="min-w-0 rounded-md border border-border-subtle bg-page px-3 py-2 text-sm text-text-main outline-none focus:border-yellow-500" placeholder="One-off item" />
+              <input value={customItemPrice} onChange={(event) => setCustomItemPrice(event.target.value)} onKeyDown={(event) => event.key === 'Enter' && handleAddCustomItem()} className="min-w-0 rounded-md border border-border-subtle bg-page px-3 py-2 text-sm text-text-main outline-none focus:border-yellow-500" inputMode="decimal" placeholder="Price" />
+              <button type="button" onClick={handleAddCustomItem} className="rounded-md bg-yellow-500 px-3 py-2 text-xs font-bold text-black transition-colors hover:bg-yellow-400">Add</button>
             </div>
           </div>
 
@@ -337,7 +353,7 @@ export default function ManualBilling() {
           Thank You For Visiting!
         </div>
         <div className="text-center mt-2 text-[9px] text-text-muted uppercase tracking-widest">
-          Powered by Kalvix Nexus POS
+          Powered by RAMYA
         </div>
       </div>
 

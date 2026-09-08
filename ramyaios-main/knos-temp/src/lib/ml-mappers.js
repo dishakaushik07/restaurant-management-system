@@ -9,6 +9,15 @@ export function numberValue(value, fallback = 0) {
 export function timestampToDate(value) {
   if (!value) return null;
   if (typeof value.toDate === "function") return value.toDate();
+  if (typeof value === "number") {
+    const milliseconds = value < 100_000_000_000 ? value * 1000 : value;
+    const date = new Date(milliseconds);
+    return Number.isNaN(date.getTime()) ? null : date;
+  }
+  if (typeof value === "object" && Number.isFinite(Number(value.seconds))) {
+    const date = new Date(Number(value.seconds) * 1000 + Number(value.nanoseconds || 0) / 1_000_000);
+    return Number.isNaN(date.getTime()) ? null : date;
+  }
   const date = new Date(value);
   return Number.isNaN(date.getTime()) ? null : date;
 }
@@ -48,7 +57,8 @@ export function toPriorityTask(record, robot, now = new Date()) {
   const createdAt = record.createdAt ?? record.timestamp ?? record.orderTime;
   const readyAt = record.readyTime ?? record.foodReadyAt;
   const isReady = String(record.status || "").toLowerCase() === "ready";
-  const battery = robot ? numberValue(robot.battery ?? robot.batteryPercent ?? robot.battery_percent) : 0;
+  // No safe robot is an availability gate, not a fabricated zero-percent battery.
+  const battery = robot ? numberValue(robot.battery ?? robot.batteryPercent ?? robot.battery_percent) : 100;
 
   return {
     task_id: record.taskId,

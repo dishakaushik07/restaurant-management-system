@@ -585,6 +585,13 @@ Connected dashboard integration points:
 
 The frontend should not calculate task priority locally.
 
+### Runtime integration corrections
+
+- The priority rerank route sends only pending Firestore tasks to FastAPI. It does not create a fallback/demo queue or a fabricated robot assignment when Firestore has no active task or no safe robot.
+- A missing safe robot is sent to the priority engine as unavailable; it is not represented as a false `0%` battery reading. The fleet screen explains this gate and refreshes when relevant Firestore order, task, or robot documents change.
+- Website orders are retained with `status: billed` after invoicing so they can remain in Firestore history and are excluded from future pending-task ranking. They are not deleted by the API billing screen.
+- Manual billing supports a transient one-off bill item when the restaurant has not created a menu. That item is saved only inside the resulting bill and does not modify the menu collection.
+
 Analytics uses a 12-hour forecast from the demand model. Waste risk is shown only when a live `ingredients` or `inventory` document contains an item/name, stock quantity, historical/average daily demand, and days to expiry. The UI explicitly identifies this missing live data instead of fabricating a waste prediction.
 
 ## 12. Environment Variables

@@ -50,7 +50,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ 
       success: true, 
       orderId: orderRef.id, 
-      message: 'Order successfully sent to Kalvix Nexus POS. Waiting for restaurant approval.' 
+      message: 'Order successfully sent to RAMYA. Waiting for restaurant approval.'
     }, { headers: corsHeaders });
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500, headers: corsHeaders });

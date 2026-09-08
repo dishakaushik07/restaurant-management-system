@@ -27,10 +27,9 @@ export default function AdminLoginPage() {
     <div className="min-h-screen bg-black flex flex-col justify-center py-12 sm:px-6 lg:px-8 font-sans text-white">
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
         <Link href="/" className="inline-flex items-center gap-2">
-          <img src="/logo.png" alt="Kalvix Nexus Logo" className="w-10 h-10 object-contain" />
+          <div className="grid h-10 w-10 place-items-center rounded-md bg-yellow-500 text-lg font-black text-black">R</div>
           <div className="flex flex-col sm:flex-row sm:items-center sm:gap-1">
-            <span className="font-black text-2xl tracking-[0.12em] text-white leading-none">KALVIX</span>
-            <span className="font-black text-2xl tracking-[0.12em] text-yellow-500 leading-none">NEXUS</span>
+            <span className="font-black text-2xl tracking-[0.12em] text-yellow-500 leading-none">RAMYA</span>
           </div>
         </Link>
         <h2 className="mt-6 text-center text-3xl font-extrabold text-yellow-500 uppercase tracking-widest">Super Admin Access</h2>

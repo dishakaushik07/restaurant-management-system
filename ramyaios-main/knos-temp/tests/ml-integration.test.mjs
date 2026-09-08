@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { createMlClient, MlServiceError } from '../src/lib/ml-client.js';
-import { isSafetyEligibleRobot, selectEligibleRobot, toPriorityTask } from '../src/lib/ml-mappers.js';
+import { elapsedMinutes, isSafetyEligibleRobot, selectEligibleRobot, toPriorityTask } from '../src/lib/ml-mappers.js';
 
 function response(payload, status = 200) {
   return { ok: status >= 200 && status < 300, status, json: async () => payload };
@@ -29,4 +29,12 @@ test('priority mapper preserves real order context and deterministic robot safet
   assert.equal(isSafetyEligibleRobot(safeRobot), true); assert.equal(isSafetyEligibleRobot(unsafeRobot), false); assert.equal(selectEligibleRobot([unsafeRobot, safeRobot]).id, 'robot-a');
   const task = toPriorityTask({ taskId: 'qr-1', orderId: '1', tableId: '7', taskType: 'delivery', timestamp: new Date(Date.now() - 20 * 60000).toISOString(), urgency: true }, safeRobot);
   assert.equal(task.task_id, 'qr-1'); assert.equal(task.table_id, '7'); assert.equal(task.robot_available, true); assert.equal(task.robot_battery_percent, 75); assert.equal(task.urgency_flag, true); assert.ok(task.waiting_time_minutes >= 19);
+});
+
+test('priority mapper treats an unavailable robot as an availability gate, not a fake zero battery reading', () => {
+  const now = new Date('2026-09-09T12:20:00.000Z');
+  const task = toPriorityTask({ taskId: 'task-1', timestamp: { seconds: 1788956400 } }, null, now);
+  assert.equal(task.robot_available, false);
+  assert.equal(task.robot_battery_percent, 100);
+  assert.equal(elapsedMinutes({ seconds: 1788956400 }, now), 0);
 });

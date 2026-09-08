@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { auth, db } from '@/lib/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
-import { doc, getDoc, collection, query, where, getDocs, addDoc, deleteDoc } from 'firebase/firestore';
+import { doc, getDoc, collection, query, where, getDocs, addDoc, updateDoc } from 'firebase/firestore';
 
 export default function APIBilling() {
   const [userId, setUserId] = useState<string | null>(null);
@@ -61,29 +61,12 @@ export default function APIBilling() {
       const orders = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       // Sort by timestamp
       orders.sort((a: any, b: any) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
-      setApiOrders(orders);
+      setApiOrders(orders.filter((order: any) => String(order.status || '').toLowerCase() !== 'billed'));
     } catch (error) {
       console.error(error);
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleSimulateOrder = async () => {
-    if (!userId) return;
-    const fakeOrder = {
-      userId,
-      customerName: 'Aman Singh (Online)',
-      customerPhone: '9876543210',
-      items: [
-        { id: 2, name: 'Pizza', price: 300, qty: 2 },
-        { id: 4, name: 'Cold Drink', price: 50, qty: 2 }
-      ],
-      totalAmount: 700,
-      timestamp: new Date().toISOString()
-    };
-    await addDoc(collection(db, 'api_orders'), fakeOrder);
-    fetchApiOrders(userId);
   };
 
   const handleSelectOrder = (order: any) => {
@@ -121,8 +104,12 @@ export default function APIBilling() {
         date: new Date().toISOString()
       });
       
-      // 2. Remove from pending API orders
-      await deleteDoc(doc(db, 'api_orders', selectedOrder.id));
+      // Preserve the website order for the order timeline and ML history.
+      await updateDoc(doc(db, 'api_orders', selectedOrder.id), {
+        status: 'billed',
+        billedAt: new Date().toISOString(),
+        billInvoiceNo: `${invoicePrefix}-${invoiceNo}`,
+      });
       
       // 3. Print
       window.print();
@@ -139,22 +126,20 @@ export default function APIBilling() {
   if (loading) return <div className="p-8 text-text-main">Loading API Orders...</div>;
 
   return (
-    <div className="max-w-6xl flex gap-8">
+    <div className="max-w-6xl flex flex-col gap-8 xl:flex-row">
       
       {/* Left Column: API Orders List */}
       <div className="flex-1 hide-on-print">
-        <div className="flex justify-between items-center mb-6">
+        <div className="mb-6">
           <h1 className="text-3xl font-bold text-text-main">Incoming API Orders</h1>
-          <button onClick={handleSimulateOrder} className="bg-blue-600 hover:bg-blue-500 text-text-main px-4 py-2 rounded text-sm shadow">
-            Simulate Website Order
-          </button>
+          <p className="mt-2 text-sm text-text-muted">Orders submitted by your connected website appear here for billing.</p>
         </div>
 
         <div className="bg-panel border border-border-subtle rounded-xl shadow-lg p-6 min-h-[400px]">
           {apiOrders.length === 0 ? (
             <div className="text-center text-text-muted mt-20">
               <p>No new orders from your website.</p>
-              <p className="text-sm mt-2">Click "Simulate Website Order" to see how it works.</p>
+              <p className="text-sm mt-2">Use the API Key page to connect a website or ordering partner.</p>
             </div>
           ) : (
             <div className="space-y-4">
@@ -324,7 +309,7 @@ export default function APIBilling() {
             Thank You For Ordering!
           </div>
           <div className="text-center mt-2 text-[9px] text-text-muted uppercase tracking-widest">
-            Powered by Kalvix Nexus POS
+          Powered by RAMYA
           </div>
         </div>
       )}

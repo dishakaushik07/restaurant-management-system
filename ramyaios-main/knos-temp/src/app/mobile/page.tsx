@@ -38,12 +38,12 @@ export default function MobileAppSplash() {
         
         {/* Logo */}
         <div className="bg-gray-900 border border-gray-800 p-4 rounded-3xl shadow-[0_0_40px_rgba(212,175,55,0.2)] mb-6">
-          <img src="/logo.png" alt="Logo" className="w-24 h-24 object-contain animate-pulse" />
+          <div className="grid h-24 w-24 place-items-center text-4xl font-black text-yellow-500">R</div>
         </div>
         
         {/* Title */}
         <h1 className="text-3xl font-black uppercase tracking-widest text-center mb-1">
-          <span className="text-white">Kalvix Nexus</span>
+          <span className="text-white">RAMYA</span>
         </h1>
         <h2 className="text-yellow-500 text-xl font-bold uppercase tracking-[0.3em] mb-12">
           POS System
