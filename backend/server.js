@@ -5,7 +5,7 @@ const { Server } = require('socket.io');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
-const connectDB = require('./src/config/db');
+const { connectDB } = require('./src/config/db');
 
 // ==========================================
 // ROUTES IMPORTS (BE1 & BE2 Combined)
