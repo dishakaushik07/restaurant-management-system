@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Kalvix Nexus</string>
-    <string name="title_activity_main">Kalvix Nexus</string>
-    <string name="package_name">com.kalvixnexus.knos</string>
-    <string name="custom_url_scheme">com.kalvixnexus.knos</string>
+    <string name="app_name">Ramyaios</string>
+    <string name="title_activity_main">Ramyaios</string>
+    <string name="package_name">com.Ramyaiosnexus.knos</string>
+    <string name="custom_url_scheme">com.Ramyaiosnexus.knos</string>
 </resources>
+

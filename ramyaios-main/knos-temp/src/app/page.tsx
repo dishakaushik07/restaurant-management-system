@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 const INTRO_COOLDOWN_MS = 2 * 60 * 1000;
-const LAST_INTRO_KEY = "kalvix-last-launch-video";
+const LAST_INTRO_KEY = "Ramyaios-last-launch-video";
 
 export default function AppLaunchPage() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -55,11 +55,11 @@ export default function AppLaunchPage() {
         <div className="flex w-full max-w-sm flex-col items-center text-center">
           <img
             src="/logo.png"
-            alt="Kalvix Nexus logo"
+            alt="Ramyaios logo"
             className="h-[118px] w-[118px] rounded-lg border border-white/10 bg-[#111113]/70 object-contain p-3 shadow-[0_0_44px_rgba(215,169,40,0.18)]"
           />
           <p className="mb-2 mt-6 text-[13px] font-black tracking-[0.18em] text-[#ffd86b]">
-            KALVIX NEXUS
+            Ramyaios
           </p>
           <h1 className="mb-10 text-4xl font-black leading-none tracking-normal">
             POS System
@@ -94,3 +94,4 @@ export default function AppLaunchPage() {
     </main>
   );
 }
+

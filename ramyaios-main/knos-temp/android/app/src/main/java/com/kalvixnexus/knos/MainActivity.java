@@ -1,4 +1,4 @@
-package com.kalvixnexus.knos;
+package com.Ramyaiosnexus.knos;
 
 import com.getcapacitor.BridgeActivity;
 
@@ -9,3 +9,4 @@ public class MainActivity extends BridgeActivity {
         getBridge().getWebView().getSettings().setMediaPlaybackRequiresUserGesture(false);
     }
 }
+

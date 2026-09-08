@@ -42,7 +42,7 @@ export default function AdminPage() {
               <div className="bg-page p-4 rounded-lg border border-border-subtle">
                 <h3 className="font-bold text-text-muted mb-4 uppercase text-xs tracking-wider">Current Organization</h3>
                 <div className="flex justify-between items-center mb-4">
-                  <div className="font-bold text-lg">Kalvix Innovation</div>
+                  <div className="font-bold text-lg">Ramyaios Innovation</div>
                   <button className="text-yellow-500 text-sm font-bold">Edit</button>
                 </div>
                 <button className="w-full bg-panel-hover hover:bg-gray-700 text-text-main font-bold py-2 rounded transition-colors text-sm">
@@ -162,3 +162,4 @@ export default function AdminPage() {
     </div>
   );
 }
+

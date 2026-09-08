@@ -209,7 +209,7 @@ export default function BillHistoryPage() {
       {/* Hidden Thermal Receipt for History Print */}
       {selectedBill && (
         <div className="bg-white printable-receipt font-mono text-black hidden-until-print" style={{ width: '80mm', padding: '5mm', margin: '0 auto' }}>
-          <div className="text-center font-bold text-2xl mb-1 uppercase tracking-widest">KALVIX NEXUS</div>
+          <div className="text-center font-bold text-2xl mb-1 uppercase tracking-widest">Ramyaios</div>
           <div className="text-center text-xs mb-3">TAX INVOICE</div>
           
           <div className="border-b-2 border-dashed border-black mb-3"></div>
@@ -280,7 +280,7 @@ export default function BillHistoryPage() {
             Thank You For Visiting!
           </div>
           <div className="text-center mt-2 text-[9px] text-text-muted uppercase tracking-widest">
-            Powered by Kalvix Nexus POS
+            Powered by Ramyaios POS
           </div>
         </div>
       )}
@@ -308,3 +308,4 @@ export default function BillHistoryPage() {
     </>
   );
 }
+

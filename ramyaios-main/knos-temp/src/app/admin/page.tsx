@@ -59,7 +59,7 @@ export default function AdminDashboard() {
     <div className="min-h-screen bg-gray-50 p-8 font-sans text-gray-900">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl font-bold mb-8 flex items-center gap-3">
-          <img src="/logo.png" alt="Kalvix Nexus Logo" className="w-8 h-8" />
+          <img src="/logo.png" alt="Ramyaios Logo" className="w-8 h-8" />
           Super Admin Panel
         </h1>
 
@@ -166,3 +166,4 @@ export default function AdminDashboard() {
     </div>
   );
 }
+
