@@ -16,7 +16,7 @@ export default function OverviewDashboard() {
       <div className="flex justify-between items-end">
         <div>
           <h1 className="text-3xl font-black uppercase tracking-widest text-yellow-500">Live Dashboard</h1>
-          <p className="text-text-muted mt-1 text-sm tracking-widest uppercase">Kalvix Nexus Control Center</p>
+          <p className="text-text-muted mt-1 text-sm tracking-widest uppercase">Ramyaios Control Center</p>
         </div>
         <div className="font-mono text-xl text-text-main bg-panel border border-border-subtle px-4 py-2 rounded-lg">
           {currentTime || '00:00:00'}
@@ -153,3 +153,4 @@ export default function OverviewDashboard() {
     </div>
   );
 }
+

@@ -8,7 +8,7 @@ export interface Robot {
   ip: string;
 }
 
-const STORAGE_KEY = 'kalvix_serve_robots';
+const STORAGE_KEY = 'Ramyaios_serve_robots';
 
 export function useRobotRegistry() {
   const [robots, setRobots] = useState<Robot[]>([]);
@@ -72,3 +72,4 @@ export function useRobotRegistry() {
     updateRobot,
   };
 }
+

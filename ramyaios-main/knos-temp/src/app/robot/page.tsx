@@ -3,7 +3,7 @@ import Script from 'next/script';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Robot Control - Kalvix Serve',
+  title: 'Robot Control - Ramyaios Serve',
 };
 
 export default function RobotPage() {
@@ -17,3 +17,4 @@ export default function RobotPage() {
     </>
   );
 }
+

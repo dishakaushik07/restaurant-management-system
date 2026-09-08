@@ -71,7 +71,7 @@ export default function SettingsPage() {
               value={restaurantName}
               onChange={(e) => setRestaurantName(e.target.value)}
               className="w-full bg-page border border-border-subtle rounded-md px-4 py-3 text-text-main focus:outline-none focus:border-yellow-500 transition-colors"
-              placeholder="e.g. Kalvix Cafe"
+              placeholder="e.g. Ramyaios Cafe"
               required
             />
           </div>
@@ -133,3 +133,4 @@ export default function SettingsPage() {
     </div>
   );
 }
+

@@ -43,7 +43,7 @@ export default function MobileAppSplash() {
         
         {/* Title */}
         <h1 className="text-3xl font-black uppercase tracking-widest text-center mb-1">
-          <span className="text-white">Kalvix Nexus</span>
+          <span className="text-white">Ramyaios</span>
         </h1>
         <h2 className="text-yellow-500 text-xl font-bold uppercase tracking-[0.3em] mb-12">
           POS System
@@ -71,3 +71,4 @@ export default function MobileAppSplash() {
     </div>
   );
 }
+

@@ -324,7 +324,7 @@ export default function APIBilling() {
             Thank You For Ordering!
           </div>
           <div className="text-center mt-2 text-[9px] text-text-muted uppercase tracking-widest">
-            Powered by Kalvix Nexus POS
+            Powered by Ramyaios POS
           </div>
         </div>
       )}
@@ -352,3 +352,4 @@ export default function APIBilling() {
     </div>
   );
 }
+
