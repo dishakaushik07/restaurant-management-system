@@ -1,5 +1,7 @@
 'use client';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '@/lib/firebase';
 
 type RobotStatus = 'idle' | 'delivering' | 'returning' | 'charging' | 'error';
 
@@ -20,6 +22,32 @@ export default function FleetManagementPage() {
     { id: 'r4', name: 'Nexus-04', status: 'charging', battery: 12, location: 'Charging Dock 1' },
     { id: 'r5', name: 'Nexus-05', status: 'error', battery: 60, currentTask: 'Deliver Order #1041', location: 'Stuck at Table 4' },
   ]);
+  const [userId, setUserId] = useState<string | null>(null);
+  const [queue, setQueue] = useState<any[]>([]);
+  const [nextTask, setNextTask] = useState<any>(null);
+  const [queueError, setQueueError] = useState<string | null>(null);
+  const [queueLoading, setQueueLoading] = useState(false);
+
+  const refreshPriority = useCallback(async (uid: string) => {
+    setQueueLoading(true);
+    setQueueError(null);
+    try {
+      const response = await fetch('/api/ml/priority/rerank', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId: uid, trigger: 'fleet_dashboard_refresh' }) });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Unable to refresh the task queue.');
+      setQueue(data.ranked_tasks ?? []);
+      setNextTask(data.next_best_task ?? null);
+    } catch (error) {
+      setQueueError(error instanceof Error ? error.message : 'Unable to refresh the task queue.');
+    } finally {
+      setQueueLoading(false);
+    }
+  }, []);
+
+  useEffect(() => onAuthStateChanged(auth, (user) => {
+    setUserId(user?.uid ?? null);
+    if (user) refreshPriority(user.uid);
+  }), [refreshPriority]);
 
   const getStatusColor = (status: RobotStatus) => {
     switch (status) {
@@ -54,6 +82,16 @@ export default function FleetManagementPage() {
           </div>
         </div>
       </div>
+
+      <section className="bg-panel border border-border-subtle rounded-xl p-5">
+        <div className="flex items-center justify-between gap-4 mb-4">
+          <div><h2 className="text-lg font-bold uppercase tracking-widest">ML Task Priority Queue</h2><p className="text-xs text-text-muted mt-1">Firestore tasks ranked by the FastAPI priority engine</p></div>
+          <button onClick={() => userId && refreshPriority(userId)} disabled={!userId || queueLoading} className="bg-page border border-yellow-500 text-yellow-500 hover:bg-yellow-500/10 disabled:opacity-50 font-bold py-2 px-3 rounded text-xs uppercase tracking-widest">{queueLoading ? 'Ranking' : 'Rerank'}</button>
+        </div>
+        {queueError && <p className="text-sm text-red-300">{queueError}</p>}
+        {!queueError && !queue.length && <p className="text-sm text-text-muted">{queueLoading ? 'Loading live task data...' : 'No pending Firestore orders or tasks are available.'}</p>}
+        {queue.length > 0 && <div className="overflow-x-auto"><table className="w-full text-left text-sm"><thead className="text-xs uppercase text-text-muted border-b border-border-subtle"><tr><th className="p-2">Task</th><th className="p-2">Table</th><th className="p-2">Score</th><th className="p-2">Level</th><th className="p-2">Reasons</th></tr></thead><tbody>{queue.map((task) => <tr key={task.task_id} className={`border-b border-border-subtle/50 ${nextTask?.task_id === task.task_id ? 'bg-yellow-500/10' : ''}`}><td className="p-2 font-mono text-xs">{task.task_id}</td><td className="p-2">{task.table_id || 'Unassigned'}</td><td className="p-2 font-bold">{task.priority_score}</td><td className="p-2 font-bold">{task.priority_level}</td><td className="p-2 text-xs text-text-muted">{(task.reasons ?? []).join(' ')}</td></tr>)}</tbody></table></div>}
+      </section>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 flex-1">
         

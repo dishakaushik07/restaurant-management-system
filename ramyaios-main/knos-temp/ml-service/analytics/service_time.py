@@ -97,7 +97,8 @@ class ServiceTimePredictor:
         hour = int(payload.get("hour", 13))
         robot_available = int(bool(payload.get("robot_available", payload.get("robotAvailable", True))))
         distance_m = float(payload.get("distance_m", payload.get("distance", 5)))
-        historical = float(payload.get("historical_prep_time", payload.get("historicalPrepTime", DISH_BASE.get(dish_type, 14))))
+        raw_hist = payload.get("historical_prep_time") if payload.get("historical_prep_time") is not None else payload.get("historicalPrepTime")
+        historical = float(raw_hist if raw_hist is not None else DISH_BASE.get(dish_type, 14))
 
         row = pd.DataFrame(
             [

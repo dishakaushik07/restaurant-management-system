@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:ml-integration": "node --test tests/ml-integration.test.mjs"
   },
   "dependencies": {
     "firebase": "^10.8.0",

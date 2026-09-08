@@ -4,19 +4,19 @@
 
 This implementation adds an independent Python/FastAPI ML service for RAMYA - Restaurant Automation, Management & Yield Analytics. The service is responsible for explainable robot task priority scoring, task queue reranking, demand prediction, kitchen load recommendations, waste-risk prediction, service-time estimation, anomaly detection, guest intent classification, and sentiment analysis.
 
-The existing web app was not redesigned. Frontend pages were intentionally left unchanged so the web developer can connect to the ML API later using the contract below.
+The existing web app was not redesigned. It now integrates this service through server-side Next.js route handlers, so the browser calls only local application routes and never calls FastAPI directly.
 
 ## 2. Architecture
 
 Target integration architecture:
 
-React dashboard or robot UI
--> Node/Express or Next.js backend route
--> MongoDB or existing Firestore data source
+React dashboard or guest assistant
+-> Next.js route handler
+-> Firestore client/data adapter
 -> FastAPI ML service
 -> ML/rule intelligence
--> backend orchestration
--> dashboard/robot control
+-> Next.js response
+-> dashboard/robot control recommendation
 
 In this repository, the current checked-in app is a Next.js/Firebase app. No Express server, MongoDB schemas, or Mongoose models were present at the time of implementation. The ML service is therefore implemented independently under `ml-service/` and exposes REST APIs for the future Node/Express backend or existing Next.js route handlers.
 
@@ -274,10 +274,23 @@ Backend responsibility:
 - `ml-service/tests/test_api_contract.py`
 - `ml-service/tests/test_data_sources.py`
 - `ML_IMPLEMENTATION_NOTES.md`
+- `.env.example`
+- `src/lib/ml-client.js`
+- `src/lib/ml-mappers.js`
+- `src/lib/firestore-ml.ts`
+- `src/app/api/ml/priority/rerank/route.ts`
+- `src/app/api/ml/analytics/route.ts`
+- `src/app/api/ml/guest/route.ts`
+- `src/components/GuestAssistant.tsx`
+- `tests/ml-integration.test.mjs`
 
 ## 8. Files Modified
 
 - `.gitignore`
+- `package.json`
+- `src/app/dashboard/analytics/page.tsx`
+- `src/app/dashboard/fleet/page.tsx`
+- `src/app/dashboard/layout.tsx`
 
 Changes:
 
@@ -286,7 +299,7 @@ Changes:
 - Added `.pytest_cache`, `.mypy_cache`, and `.ruff_cache`.
 - Ignored generated `ml-service/models/*.joblib` model binaries while keeping `ml-service/models/.gitkeep`.
 
-No existing frontend pages, Firebase code, robot UI files, or route handlers were modified.
+Added `src/lib/ml-client.js`, `src/lib/ml-mappers.js`, and `src/lib/firestore-ml.ts` as the server-side integration layer. Added Next.js routes `POST /api/ml/priority/rerank`, `POST /api/ml/analytics`, and `POST /api/ml/guest` plus the minimal `GuestAssistant` component. The existing robot-control UI and transport code were not modified.
 
 ## 9. APIs
 
@@ -533,9 +546,23 @@ Request:
 
 Response contains `sentiment`, `score`, `algorithm`, and `reasons`.
 
+### Next.js Integration Routes
+
+The frontend calls these same-origin Next.js routes, which in turn call the FastAPI endpoints listed above using `ML_SERVICE_URL`.
+
+| Method | URL | Firestore source/action | FastAPI calls |
+| --- | --- | --- | --- |
+| POST | `/api/ml/priority/rerank` | Reads pending `qr_orders`, `api_orders`, and `restaurant_tasks`; reads eligible `robots`; writes priority fields | `/api/ml/priority/rerank` |
+| POST | `/api/ml/analytics` | Reads active orders plus optional `robots`, `ingredients`, and `inventory` | Demand, kitchen load, service time, waste, anomaly |
+| POST | `/api/ml/guest` | Reads the requested order/FAQ; creates a staff task or feedback document when needed | Intent and sentiment |
+
+Every Next.js route requires a JSON `userId`. The priority route accepts an optional `trigger`; the guest route accepts `message` plus optional `tableId` and `orderId`. Errors use a meaningful JSON response and do not expose raw FastAPI fetch errors.
+
 ## 10. Database Changes
 
-No database schema, collection, or model files were changed.
+No Firebase schema files exist in this repository. The integration reads the existing `qr_orders` and `api_orders` collections. It reads `robots`, `ingredients`, and `inventory` only when those optional collections have live data.
+
+The guest assistant creates `restaurant_tasks` for staff assistance and `guest_feedback` for feedback. Reranking persists `priorityScore`, `priorityLevel`, `priorityReasons`, and `priorityUpdatedAt` on each source order/task. It persists `assignedRobot` only for the selected task when a Firestore robot is `idle` or `available`, has at least 20% battery, and has neither `emergencyStop` nor `obstacleDetected` set.
 
 Recommended future backend fields:
 
@@ -544,13 +571,13 @@ Recommended future backend fields:
 - Robot documents can store `battery`, `status`, `location`, `currentTask`, and `lastTelemetryAt`.
 - Sensor/telemetry documents can store MLX90614 temperature, HC-SR04 distance/obstacle data, MPU6050 motion data, BLE position, and timestamp.
 
-These are integration recommendations only; they were not added in code.
+These remain recommended fields for future robot telemetry documents. The listed priority fields are now written by the integration.
 
 ## 11. Frontend Changes
 
-No frontend page/component changes were made.
+The existing analytics page now shows live model responses from the local Next.js analytics route. Fleet Management now includes a compact FastAPI-ranked task queue. The existing assistant button now opens a compact form backed by the local guest route. No global layout, styling system, or robot controls were redesigned.
 
-Future dashboard integration points:
+Connected dashboard integration points:
 
 - Task priority queue: call backend -> `/api/ml/priority/rerank`.
 - AI analytics cards: call backend -> demand, kitchen-load, service-time, waste, anomaly APIs.
@@ -558,9 +585,11 @@ Future dashboard integration points:
 
 The frontend should not calculate task priority locally.
 
+Analytics uses a 12-hour forecast from the demand model. Waste risk is shown only when a live `ingredients` or `inventory` document contains an item/name, stock quantity, historical/average daily demand, and days to expiry. The UI explicitly identifies this missing live data instead of fabricating a waste prediction.
+
 ## 12. Environment Variables
 
-Required for the future Node/Express or Next.js backend integration:
+Required for the current Next.js server-route integration:
 
 ```text
 ML_SERVICE_URL=http://localhost:8000
@@ -569,10 +598,10 @@ ML_SERVICE_URL=http://localhost:8000
 Optional:
 
 ```text
-ML_REQUEST_TIMEOUT_MS=3000
+ML_REQUEST_TIMEOUT_MS=5000
 ```
 
-No secrets were added. No `.env` files were created.
+No secrets were added. `.env.example` contains these non-secret variables.
 
 ## 13. How To Run
 
@@ -658,10 +687,9 @@ Tests implemented:
 
 Local verification result during implementation:
 
-- `python -m unittest discover -s tests`: 26 tests passed, 3 skipped because FastAPI is not importable from the runnable bundled Python environment.
+- Bundled Python: `python -m unittest discover -s tests` passed 26 tests with 3 endpoint tests skipped because FastAPI is not installed in that bundled runtime.
 - `python -m compileall app.py model_store.py data_sources.py analytics nlp priority tests`: passed.
-- `.venv\Scripts\python.exe`: could not be executed from this sandbox after dependency setup; Windows returned `Access is denied`.
-- `.venv\Scripts\pytest.exe tests\test_api_contract.py`: could not be executed because it also invokes the blocked `.venv\Scripts\python.exe`.
+- Project virtual environment: `.venv\Scripts\python.exe -m unittest tests\test_api_contract.py` passed all 3 FastAPI endpoint contract tests.
 - `npm run lint`: failed because local `node_modules`/`eslint` are not installed; no frontend code was modified.
 
 ## 15. Mock/Simulation Data
@@ -749,8 +777,7 @@ How the robot receives the decision:
 - The current repository uses Firebase/Firestore from Next.js pages and route handlers.
 - Real restaurant historical demand, waste, service-time, menu, ingredient, and feedback datasets are present under `ml-service/Resturant Analytics Dashboard/output` and are now used by the analytics loaders.
 - Some dataset rows contain quality issues such as negative stock/quantity/seating values. The implementation cleans only derived in-memory ML feature frames where needed and does not modify source files.
-- FastAPI endpoint tests were skipped under the bundled Python because FastAPI is not importable there.
-- A local `.venv` exists, but executing `.venv\Scripts\python.exe` from this sandbox returned `Access is denied`, so live endpoint tests could not be completed here.
+- The bundled Python does not contain FastAPI, so its test run skips the endpoint module. The project virtual environment contains FastAPI and completed all 3 endpoint contract tests successfully.
 - The service includes fallback logic so pure Python tests can still verify behavior without those packages.
 - No live ESP32, MLX90614, HC-SR04, MPU6050, or BLE data is connected.
 - The frontend was not integrated by request.
