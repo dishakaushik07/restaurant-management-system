@@ -150,19 +150,19 @@ export default function RobotControlPage() {
               <p className="text-xl font-black text-yellow-500">{telemetry.state}</p>
             </div>
             
-            <div className={`bg-page p-4 rounded-lg border border-border-subtle ${telemetry.distance_cm > 0 && telemetry.distance_cm < 20 ? 'border-red-500 shadow-[0_0_15px_rgba(239,68,68,0.3)]' : ''}`}>
+            <div className={`bg-page p-4 rounded-lg border border-border-subtle ${telemetry.distance_cm && telemetry.distance_cm > 0 && telemetry.distance_cm < 20 ? 'border-red-500 shadow-[0_0_15px_rgba(239,68,68,0.3)]' : ''}`}>
               <p className="text-xs text-text-muted uppercase tracking-wider mb-1">Distance (Obstacle)</p>
-              <p className="text-xl font-black text-text-main">{telemetry.distance_cm > 0 ? telemetry.distance_cm.toFixed(1) : '--'} cm</p>
+              <p className="text-xl font-black text-text-main">{telemetry.distance_cm != null && telemetry.distance_cm > 0 ? Number(telemetry.distance_cm).toFixed(1) : '--'} cm</p>
             </div>
             
             <div className="bg-page p-4 rounded-lg border border-border-subtle">
               <p className="text-xs text-text-muted uppercase tracking-wider mb-1">Room Temp</p>
-              <p className="text-xl font-black text-blue-400">{telemetry.room_temp.toFixed(1)} °C</p>
+              <p className="text-xl font-black text-blue-400">{telemetry.room_temp != null ? Number(telemetry.room_temp).toFixed(1) : '--'} °C</p>
             </div>
             
             <div className="bg-page p-4 rounded-lg border border-border-subtle">
               <p className="text-xs text-text-muted uppercase tracking-wider mb-1">Object / Guest Temp</p>
-              <p className="text-xl font-black text-red-400">{telemetry.obj_temp > -70 ? telemetry.obj_temp.toFixed(1) : '--'} °C</p>
+              <p className="text-xl font-black text-red-400">{telemetry.obj_temp != null ? Number(telemetry.obj_temp).toFixed(1) : '--'} °C</p>
             </div>
           </div>
         </div>
