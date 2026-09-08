@@ -112,29 +112,38 @@ export default function RobotControlPage() {
           <div className="grid grid-cols-3 gap-2">
             <div />
             <button 
-              onPointerDown={() => sendWSCommand('FORWARD')} 
-              onPointerUp={() => sendWSCommand('STOP')}
-              onPointerLeave={() => sendWSCommand('STOP')}
+              onMouseDown={() => sendWSCommand('FORWARD')} 
+              onMouseUp={() => sendWSCommand('STOP')}
+              onMouseLeave={() => sendWSCommand('STOP')}
+              onTouchStart={() => sendWSCommand('FORWARD')}
+              onTouchEnd={() => sendWSCommand('STOP')}
               className="w-16 h-16 bg-yellow-500 text-black rounded-lg flex items-center justify-center text-2xl font-bold active:scale-95 shadow-lg">↑</button>
             <div />
             <button 
-              onPointerDown={() => sendWSCommand('LEFT')} 
-              onPointerUp={() => sendWSCommand('STOP')}
-              onPointerLeave={() => sendWSCommand('STOP')}
+              onMouseDown={() => sendWSCommand('LEFT')} 
+              onMouseUp={() => sendWSCommand('STOP')}
+              onMouseLeave={() => sendWSCommand('STOP')}
+              onTouchStart={() => sendWSCommand('LEFT')}
+              onTouchEnd={() => sendWSCommand('STOP')}
               className="w-16 h-16 bg-yellow-500 text-black rounded-lg flex items-center justify-center text-2xl font-bold active:scale-95 shadow-lg">←</button>
             <button 
-              onPointerDown={() => sendWSCommand('STOP')} 
+              onMouseDown={() => sendWSCommand('STOP')} 
+              onTouchStart={() => sendWSCommand('STOP')}
               className="w-16 h-16 bg-red-500 text-white rounded-lg flex items-center justify-center text-xl font-bold active:scale-95 shadow-lg">■</button>
             <button 
-              onPointerDown={() => sendWSCommand('RIGHT')} 
-              onPointerUp={() => sendWSCommand('STOP')}
-              onPointerLeave={() => sendWSCommand('STOP')}
+              onMouseDown={() => sendWSCommand('RIGHT')} 
+              onMouseUp={() => sendWSCommand('STOP')}
+              onMouseLeave={() => sendWSCommand('STOP')}
+              onTouchStart={() => sendWSCommand('RIGHT')}
+              onTouchEnd={() => sendWSCommand('STOP')}
               className="w-16 h-16 bg-yellow-500 text-black rounded-lg flex items-center justify-center text-2xl font-bold active:scale-95 shadow-lg">→</button>
             <div />
             <button 
-              onPointerDown={() => sendWSCommand('REVERSE')} 
-              onPointerUp={() => sendWSCommand('STOP')}
-              onPointerLeave={() => sendWSCommand('STOP')}
+              onMouseDown={() => sendWSCommand('REVERSE')} 
+              onMouseUp={() => sendWSCommand('STOP')}
+              onMouseLeave={() => sendWSCommand('STOP')}
+              onTouchStart={() => sendWSCommand('REVERSE')}
+              onTouchEnd={() => sendWSCommand('STOP')}
               className="w-16 h-16 bg-yellow-500 text-black rounded-lg flex items-center justify-center text-2xl font-bold active:scale-95 shadow-lg">↓</button>
             <div />
           </div>
