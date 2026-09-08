@@ -1,0 +1,36 @@
+supplier_id,supplier_name,city,contact_name,contact_email,contact_phone,rating
+1,Bharat Wholesale Group,Bengaluru,Sanjay Kapoor,sanjay.kapoor875@yahoo.com,7950362448,3.3
+2,Bharat Fresh Mart Industries,Surat,Isha Bhatt,isha.bhatt777@hotmail.com,+91-7953515611,4.3
+3,Golden Foods Group,Patna,Sneha Joshi,sneha.joshi897@rediffmail.com,8006034966,2.6
+4,Royal Farm Supplies Pvt Ltd,Patna,Diya Pillai,diya.pillai735@outlook.com,7799437764,3.1
+5,Bharat Traders & Co,Kolkata,Kavya Chopra,kavya.chopra93@yahoo.com,7849671263,3.6
+6,National Farm Supplies Pvt Ltd,Lucknow,Pooja Singh,pooja.singh922@yahoo.com,8394626766,2.1
+7,Silver Agro Pvt Ltd,Kolkata,Saanvi Verma,saanvi.verma830@outlook.com,9018906977,4.8
+8,National Distributors Group,Kanpur,Aarav Bansal,aarav.bansal139@yahoo.com,7804366833,4.4
+9,Bharat Farm Supplies Pvt Ltd,Indore,Aadhya Nair,aadhya.nair510@gmail.com,8897752425,3.5
+10,Shree Farm Supplies LLP,Vadodara,Reyansh Patel,reyansh.patel277@outlook.com,8097462013,2.6
+11,Prime Wholesale Pvt Ltd,Lucknow,Anika Patel,anika.patel42@hotmail.com,8820577270,1.9
+12,Trident Farm Supplies & Co,Nagpur,Saanvi Rao,saanvi.rao12@outlook.com,8949062288,5.0
+13,Golden Fresh Mart Pvt Ltd,Pune,Sanjay Bhatt,sanjay.bhatt361@yahoo.com,7920690313,4.6
+14,Shree Traders LLP,Indore,Anjali Rao,anjali.rao770@rediffmail.com,7426637740,1.8
+15,Sunrise Impex & Co,Ahmedabad,Anika Reddy,anika.reddy146@rediffmail.com,+91-7949737387,2.5
+16,Golden Fresh Mart Group,Kanpur,Amit Kapoor,amit.kapoor613@rediffmail.com,9415471395,2.0
+17,National Farm Supplies Industries,Surat,Saanvi Joshi,saanvi.joshi138@yahoo.com,9305850324,4.3
+18,Trident Foods LLP,Nashik,Suresh Pillai,suresh.pillai551@hotmail.com,,8.6
+19,Golden Distributors Industries,Agra,Sai Bansal,sai.bansal159@rediffmail.com,9554307232,4.4
+20,Shree Traders Industries,Hyderabad,Sanjay Iyer,sanjay.iyer209@gmail.com,9801339913,4.2
+21,Bharat Wholesale & Co,Lucknow,Nikhil Malhotra,nikhil.malhotra591@gmail.com,9972014748,2.5
+22,National Wholesale & Co,Delhi,Ayaan Kumar,ayaan.kumar93@hotmail.com,8244614730,4.3
+23,Shree Impex LLP,Ludhiana,Rahul Patel,rahul.patel507@gmail.com,9562068320,4.5
+24,Royal Impex LLP,Kanpur,Sneha Chopra,sneha.chopra287@yahoo.com,9572552410,2.2
+25,Om Wholesale Pvt Ltd,Agra,Riya Singh,riya.singh814@yahoo.com,7103637832,2.5
+26,Om Wholesale Pvt Ltd,Ahmedabad,Aarav Gupta,aarav.gupta466@yahoo.com,7015128947,4.1
+27,Prime Farm Supplies & Co,Kanpur,Aarav Malhotra,aarav.malhotra475@outlook.com,8452855321,1.6
+28,Bharat Traders & Co,Kolkata,Pooja Sharma,pooja.sharma823gmail.com,9983259293,3.9
+29,Sunrise Distributors Group,Nagpur,Isha Verma,isha.verma307@yahoo.com,8631977229,4.5
+30,Shree Impex LLP,Ludhiana,Ayaan Bhatt,ayaan.bhatt740@gmail.com,7820171965,4.2
+31,National Traders Industries,Surat,Anika Kumar,anika.kumar950@gmail.com,7658456815,4.6
+32,Royal Impex & Co,Patna,Isha Joshi,isha.joshi674@yahoo.com,9395599786,4.7
+33,Om Traders Pvt Ltd,Chennai,Pari Pillai,pari.pillai612@rediffmail.com,7841914913,1.0
+34,Prime Distributors Group,Indore,Sanjay Singh,sanjay.singh710@hotmail.com,7046634674,1.9
+35,National Fresh Mart & Co,Vadodara,Manish Joshi,manish.joshi271@gmail.com,7215329259,3.7

@@ -53,13 +53,9 @@ export default function AppLaunchPage() {
 
       <section className="grid min-h-screen min-h-dvh place-items-center bg-[radial-gradient(circle_at_50%_22%,rgba(215,169,40,0.24),transparent_32%),linear-gradient(145deg,#050505_0%,#12110d_48%,#050505_100%)] px-6 py-8">
         <div className="flex w-full max-w-sm flex-col items-center text-center">
-          <img
-            src="/logo.png"
-            alt="Kalvix Nexus logo"
-            className="h-[118px] w-[118px] rounded-lg border border-white/10 bg-[#111113]/70 object-contain p-3 shadow-[0_0_44px_rgba(215,169,40,0.18)]"
-          />
+          <div className="grid h-[118px] w-[118px] place-items-center rounded-lg border border-[#ffd86b]/50 bg-[#111113]/70 text-5xl font-black text-[#ffd86b] shadow-[0_0_44px_rgba(215,169,40,0.18)]">R</div>
           <p className="mb-2 mt-6 text-[13px] font-black tracking-[0.18em] text-[#ffd86b]">
-            KALVIX NEXUS
+            RAMYA
           </p>
           <h1 className="mb-10 text-4xl font-black leading-none tracking-normal">
             POS System

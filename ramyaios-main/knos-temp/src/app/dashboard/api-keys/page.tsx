@@ -42,7 +42,7 @@ export default function Dashboard() {
     
     // Generate a secure looking unique key
     const uniquePart = Math.random().toString(36).substring(2, 15) + Date.now().toString(36);
-    const generatedKey = `knos_live_${uniquePart.toUpperCase()}`;
+    const generatedKey = `ramya_live_${uniquePart.toUpperCase()}`;
     
     const keyName = newKeyName.trim() || `API Key ${apiKeys.length + 1}`;
 
@@ -83,7 +83,7 @@ export default function Dashboard() {
       {/* Header */}
       <header className="mb-10">
         <h1 className="text-3xl font-bold text-text-main uppercase tracking-widest">API Dashboard</h1>
-        <p className="text-text-muted mt-2 text-sm">Manage your API keys and connect your restaurant website to Kalvix Nexus POS.</p>
+        <p className="text-text-muted mt-2 text-sm">Manage your API keys and connect your restaurant website to RAMYA.</p>
       </header>
 
       {/* Generate Key Section */}
@@ -188,14 +188,14 @@ export default function Dashboard() {
             <button 
               onClick={() => {
                 const code = `### Hello Developer,
-We have integrated Kalvix Nexus POS for billing. Whenever a successful order is placed on the website, push it to our POS using the function below.
+We have integrated RAMYA for billing. Whenever a successful order is placed on the website, push it to our POS using the function below.
 
 // Replace with the unique API Key from the POS
 const API_KEY = "${apiKeys.length > 0 ? apiKeys[apiKeys.length - 1].key : 'YOUR_API_KEY'}"; 
-// The actual domain where Kalvix Nexus POS is hosted
+// The domain where RAMYA is hosted
 const POS_BASE_URL = "https://knospos.vercel.app"; 
 
-async function sendOrderToKalvixPOS(customerInfo, cartItems, totalAmount) {
+async function sendOrderToRamya(customerInfo, cartItems, totalAmount) {
   try {
     const response = await fetch(\`\${POS_BASE_URL}/api/external/orders\`, {
       method: "POST",
@@ -239,7 +239,7 @@ async function sendOrderToKalvixPOS(customerInfo, cartItems, totalAmount) {
           <div className="bg-page border border-border-subtle p-5 rounded-md font-mono text-sm text-text-main overflow-x-auto shadow-inner relative">
             <div className="text-text-muted mb-4 whitespace-pre-wrap">
 {`### Hello Developer,
-We have integrated Kalvix Nexus POS for billing. Whenever a successful order is placed on the website, push it to our POS using the function below.`}
+We have integrated RAMYA for billing. Whenever a successful order is placed on the website, push it to our POS using the function below.`}
             </div>
             
             <div className="text-green-400 mb-1">// Replace with the unique API Key from the POS</div>
@@ -247,13 +247,13 @@ We have integrated Kalvix Nexus POS for billing. Whenever a successful order is 
               <span className="text-blue-300">const</span> <span className="text-text-main">API_KEY</span> <span className="text-pink-400">=</span> <span className="text-yellow-200">"{apiKeys.length > 0 ? <span className="text-yellow-500 font-bold">{apiKeys[apiKeys.length - 1].key}</span> : 'YOUR_API_KEY'}"</span>;
             </div>
             
-            <div className="text-green-400 mt-2 mb-1">// The actual domain where Kalvix Nexus POS is hosted</div>
+            <div className="text-green-400 mt-2 mb-1">// The domain where RAMYA is hosted</div>
             <div>
               <span className="text-blue-300">const</span> <span className="text-text-main">POS_BASE_URL</span> <span className="text-pink-400">=</span> <span className="text-yellow-200">"https://knospos.vercel.app"</span>;
             </div>
             <br />
             <div>
-              <span className="text-blue-300">async function</span> <span className="text-yellow-100">sendOrderToKalvixPOS</span>(customerInfo, cartItems, totalAmount) {'{'}
+              <span className="text-blue-300">async function</span> <span className="text-yellow-100">sendOrderToRamya</span>(customerInfo, cartItems, totalAmount) {'{'}
             </div>
             <div className="pl-4">
               <span className="text-blue-300">try</span> {'{'}

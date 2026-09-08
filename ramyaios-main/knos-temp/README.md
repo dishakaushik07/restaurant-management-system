@@ -2,6 +2,28 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+### RAMYA local services
+
+Create `knos-temp/.env.local` with the non-secret server-side ML URL:
+
+```text
+ML_SERVICE_URL=http://localhost:8000
+```
+
+Start FastAPI from `knos-temp/ml-service` in one terminal:
+
+```powershell
+.\.venv\Scripts\python.exe -m uvicorn app:app --reload --port 8000
+```
+
+Start the Next.js app from `knos-temp` in a second terminal:
+
+```powershell
+npm run dev
+```
+
+The browser calls same-origin Next.js routes; those route handlers call FastAPI with `ML_SERVICE_URL`.
+
 First, run the development server:
 
 ```bash

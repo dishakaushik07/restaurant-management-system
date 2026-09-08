@@ -5,18 +5,18 @@ const directoryPath = path.join(process.cwd(), 'src/app/dashboard');
 
 function replaceColors(content) {
   let newContent = content;
-  
+
   // Backgrounds
   newContent = newContent.replace(/bg-black/g, 'bg-page');
   newContent = newContent.replace(/bg-gray-950/g, 'bg-page');
   newContent = newContent.replace(/bg-gray-900/g, 'bg-panel');
   newContent = newContent.replace(/bg-gray-800/g, 'bg-panel-hover');
-  
+
   // Borders
   newContent = newContent.replace(/border-gray-900/g, 'border-border-subtle');
   newContent = newContent.replace(/border-gray-800/g, 'border-border-subtle');
   newContent = newContent.replace(/border-gray-700/g, 'border-border-subtle');
-  
+
   // Text
   newContent = newContent.replace(/text-white/g, 'text-text-main');
   newContent = newContent.replace(/text-gray-300/g, 'text-text-main');

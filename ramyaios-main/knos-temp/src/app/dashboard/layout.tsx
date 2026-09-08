@@ -6,6 +6,7 @@ import { auth, db } from '@/lib/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { GuestAssistant } from '@/components/GuestAssistant';
 
 export default function DashboardLayout({
   children,
@@ -107,8 +108,8 @@ export default function DashboardLayout({
       {/* Sidebar */}
       <aside className="w-64 bg-page border-r border-border-subtle flex flex-col">
         <div className="p-6 border-b border-border-subtle flex items-center gap-3">
-          <img src="/logo.png" alt="Kalvix Nexus Logo" className="w-8 h-8 object-contain" />
-          <h2 className="text-lg font-black tracking-widest uppercase text-text-main">Owner Panel</h2>
+          <div className="grid h-8 w-8 place-items-center rounded-md bg-yellow-500 text-sm font-black text-black">R</div>
+          <h2 className="text-lg font-black tracking-widest uppercase text-text-main">RAMYA</h2>
         </div>
         <nav className="flex-1 p-4 flex flex-col gap-2 overflow-y-auto">
           {navLinks.map((link, idx) => {
@@ -158,15 +159,7 @@ export default function DashboardLayout({
       <main className="flex-1 p-8 overflow-auto relative">
         {children}
         
-        {/* Guest Assistant Widget */}
-        <button className="absolute bottom-6 right-6 w-14 h-14 bg-yellow-500 rounded-full shadow-[0_0_20px_rgba(212,175,55,0.4)] flex items-center justify-center hover:scale-110 transition-transform group z-50">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-          </svg>
-          <div className="absolute right-16 bottom-2 bg-page border border-border-subtle text-text-main text-xs font-bold uppercase tracking-widest py-2 px-4 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-            AI Assistant
-          </div>
-        </button>
+        <GuestAssistant />
       </main>
     </div>
   );

@@ -1,140 +1,23 @@
 'use client';
-import { useState } from 'react';
 
-type RobotStatus = 'idle' | 'delivering' | 'returning' | 'charging' | 'error';
+import { BatteryCharging, Bot, Clock3, Navigation, RefreshCw, ShieldCheck, TriangleAlert } from 'lucide-react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
+import { collection, onSnapshot, query, where } from 'firebase/firestore';
+import { auth, db } from '@/lib/firebase';
 
-interface Robot {
-  id: string;
-  name: string;
-  status: RobotStatus;
-  battery: number;
-  currentTask?: string;
-  location?: string;
-}
+const duration = (minutes: unknown) => { const value = Math.max(0, Math.round(Number(minutes) || 0)); return value >= 60 ? `${Math.floor(value / 60)}h ${value % 60}m` : `${value} min`; };
+const taskLabel = (task: any) => task.task_type === 'staff_assistance' ? 'Staff assistance' : task.table_id ? `Delivery to Table ${task.table_id}` : 'Online delivery';
+const orderLabel = (task: any) => `#${String(task.order_id || task.task_id || '').slice(-6)}`;
+function readableReason(reason: string) { const waiting = reason.match(/Customer has waited\s+(\d+(?:\.\d+)?)\s+minutes/i); if (waiting) return `Waiting ${duration(waiting[1])}`; if (/Battery penalty applied/i.test(reason)) return 'No safe robot is currently available'; return reason; }
 
 export default function FleetManagementPage() {
-  const [robots, setRobots] = useState<Robot[]>([
-    { id: 'r1', name: 'Nexus-01', status: 'delivering', battery: 85, currentTask: 'Deliver Order #1044', location: 'En route to Table 12' },
-    { id: 'r2', name: 'Nexus-02', status: 'idle', battery: 92, location: 'Kitchen Station A' },
-    { id: 'r3', name: 'Nexus-03', status: 'returning', battery: 45, location: 'Hallway B' },
-    { id: 'r4', name: 'Nexus-04', status: 'charging', battery: 12, location: 'Charging Dock 1' },
-    { id: 'r5', name: 'Nexus-05', status: 'error', battery: 60, currentTask: 'Deliver Order #1041', location: 'Stuck at Table 4' },
-  ]);
-
-  const getStatusColor = (status: RobotStatus) => {
-    switch (status) {
-      case 'idle': return 'text-green-500 bg-green-500/10 border-green-900';
-      case 'delivering': return 'text-blue-500 bg-blue-500/10 border-blue-900';
-      case 'returning': return 'text-purple-500 bg-purple-500/10 border-purple-900';
-      case 'charging': return 'text-yellow-500 bg-yellow-500/10 border-yellow-900';
-      case 'error': return 'text-red-500 bg-red-500/10 border-red-900 animate-pulse';
-      default: return 'text-text-muted bg-gray-500/10 border-border-subtle';
-    }
-  };
-
-  const getBatteryIcon = (level: number) => {
-    if (level > 80) return '🔋';
-    if (level > 30) return '🪫';
-    return '⚠️';
-  };
-
-  return (
-    <div className="space-y-6 h-full flex flex-col">
-      <div className="flex justify-between items-end">
-        <div>
-          <h1 className="text-3xl font-black uppercase tracking-widest text-text-main">Fleet Management</h1>
-          <p className="text-text-muted mt-1 text-sm tracking-widest uppercase">Monitor and control robot operations</p>
-        </div>
-        <div className="flex gap-4">
-          <div className="bg-page border border-border-subtle px-4 py-2 rounded-lg flex gap-4 text-xs font-bold uppercase tracking-widest">
-            <span className="text-green-500">1 Idle</span>
-            <span className="text-blue-500">2 Active</span>
-            <span className="text-yellow-500">1 Charging</span>
-            <span className="text-red-500">1 Error</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 flex-1">
-        
-        {/* Robot List */}
-        <div className="col-span-2 grid grid-cols-2 gap-4">
-          {robots.map(robot => (
-            <div key={robot.id} className="bg-panel border border-border-subtle rounded-xl p-5 hover:border-gray-600 transition-colors flex flex-col">
-              <div className="flex justify-between items-start mb-4">
-                <div className="flex items-center gap-3">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center text-xl bg-page border border-border-subtle`}>
-                    🤖
-                  </div>
-                  <div>
-                    <h2 className="font-black tracking-widest text-lg">{robot.name}</h2>
-                    <span className={`text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded border ${getStatusColor(robot.status)}`}>
-                      {robot.status}
-                    </span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-1 font-mono font-bold text-sm bg-page px-2 py-1 rounded border border-border-subtle">
-                  {getBatteryIcon(robot.battery)} {robot.battery}%
-                </div>
-              </div>
-              
-              <div className="bg-page border border-border-subtle p-3 rounded mt-auto">
-                <div className="text-xs text-text-muted font-bold uppercase tracking-widest mb-1">Current State</div>
-                <div className="font-bold text-sm truncate">{robot.currentTask || 'No active task'}</div>
-                <div className="text-xs text-text-muted mt-1 flex items-center gap-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                  </svg>
-                  {robot.location}
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="grid grid-cols-2 gap-2 mt-4">
-                <button className="bg-panel-hover hover:bg-gray-700 text-text-main font-bold py-2 rounded text-xs uppercase tracking-widest transition-colors">
-                  Assign Task
-                </button>
-                <button className="bg-panel-hover hover:bg-gray-700 text-text-main font-bold py-2 rounded text-xs uppercase tracking-widest transition-colors">
-                  Return to Base
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Live Map / Camera Feed Mock */}
-        <div className="bg-panel border border-border-subtle rounded-xl flex flex-col overflow-hidden">
-          <div className="p-4 border-b border-border-subtle bg-page flex justify-between items-center">
-            <h2 className="text-sm font-bold uppercase tracking-widest text-yellow-500">Live Spatial Map</h2>
-            <span className="flex items-center gap-1 text-[10px] font-bold text-green-500 uppercase tracking-widest">
-              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-              Live Sync
-            </span>
-          </div>
-          <div className="flex-1 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-page relative flex items-center justify-center">
-             <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(#1f2937 1px, transparent 1px), linear-gradient(90deg, #1f2937 1px, transparent 1px)', backgroundSize: '10% 10%' }}></div>
-             
-             {/* Mocking robot dots on the map */}
-             <div className="absolute top-[20%] left-[30%] w-3 h-3 bg-blue-500 rounded-full shadow-[0_0_10px_rgba(59,130,246,0.8)] animate-pulse">
-               <span className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-[8px] font-bold">R1</span>
-             </div>
-             <div className="absolute top-[50%] left-[10%] w-3 h-3 bg-green-500 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.8)]">
-               <span className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-[8px] font-bold">R2</span>
-             </div>
-             <div className="absolute top-[80%] left-[60%] w-3 h-3 bg-purple-500 rounded-full shadow-[0_0_10px_rgba(168,85,247,0.8)]">
-               <span className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-[8px] font-bold">R3</span>
-             </div>
-             
-             <div className="absolute bottom-4 left-4 right-4 bg-page/80 backdrop-blur border border-border-subtle p-3 rounded text-center">
-               <p className="text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Select a robot to view camera feed</p>
-               <button className="w-full bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-2 rounded text-xs uppercase tracking-widest transition-colors">
-                 Open Camera View
-               </button>
-             </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  );
+  const [userId, setUserId] = useState<string | null>(null); const [queue, setQueue] = useState<any[]>([]); const [nextTask, setNextTask] = useState<any>(null); const [assignedRobot, setAssignedRobot] = useState<string | null>(null); const [loading, setLoading] = useState(false); const [error, setError] = useState(''); const [warnings, setWarnings] = useState<string[]>([]); const fingerprints = useRef<Record<string, string>>({});
+  const refresh = useCallback(async (uid: string) => { setLoading(true); setError(''); try { const response = await fetch('/api/ml/priority/rerank', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userId: uid, trigger: 'fleet_live_refresh' }) }); const payload = await response.json(); if (!response.ok) throw new Error(payload.error || 'Unable to update task priority.'); setQueue(payload.ranked_tasks ?? []); setNextTask(payload.next_best_task ?? null); setAssignedRobot(payload.assignedRobot ?? null); setWarnings(payload.warnings ?? []); } catch (reason) { setError(reason instanceof Error ? reason.message : 'Unable to update task priority.'); } finally { setLoading(false); } }, []);
+  useEffect(() => onAuthStateChanged(auth, (user) => { setUserId(user?.uid ?? null); if (user) refresh(user.uid); }), [refresh]);
+  useEffect(() => { if (!userId) return; let timer: number | undefined; const observe = (name: string) => onSnapshot(query(collection(db, name), where('userId', '==', userId)), (snapshot) => { const next = snapshot.docs.map((entry) => { const data = entry.data(); return [entry.id, data.status, data.timestamp ?? data.createdAt ?? data.orderTime, data.readyTime, data.foodTemperatureC, data.distanceM ?? data.distance_m, data.urgency, data.battery ?? data.batteryPercent, data.emergencyStop, data.obstacleDetected].join('|'); }).sort().join('~'); if (!(name in fingerprints.current)) { fingerprints.current[name] = next; return; } if (fingerprints.current[name] !== next) { fingerprints.current[name] = next; window.clearTimeout(timer); timer = window.setTimeout(() => refresh(userId), 750); } }); const stops = ['qr_orders', 'api_orders', 'restaurant_tasks', 'robots'].map(observe); return () => { stops.forEach((stop) => stop()); window.clearTimeout(timer); fingerprints.current = {}; }; }, [refresh, userId]);
+  const safeTasks = queue.filter((task) => task.assignable).length;
+  return <div className="space-y-6"><header className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><p className="ui-kicker">Robot intelligence</p><h1 className="mt-1 text-2xl font-black sm:text-3xl">Live task priority</h1><p className="mt-2 max-w-2xl text-sm text-text-muted">Tasks are ranked by wait time, urgency, food age, temperature and distance. Physical safety checks always remain in control.</p></div><button onClick={() => userId && refresh(userId)} disabled={!userId || loading} className="inline-flex h-10 items-center justify-center gap-2 rounded-md bg-accent px-4 text-xs font-bold text-black transition-colors hover:bg-accent-strong disabled:opacity-50"><RefreshCw className={`h-3.5 w-3.5 ${loading ? 'animate-spin' : ''}`} />{loading ? 'Updating' : 'Refresh priority'}</button></header>{error && <div className="rounded-md border border-danger/30 bg-danger/10 px-4 py-3 text-sm text-danger">{error}</div>}{queue.length > 0 && safeTasks === 0 && <div className="flex gap-3 rounded-md border border-accent/30 bg-accent-soft/40 px-4 py-3 text-sm"><TriangleAlert className="mt-0.5 h-4 w-4 shrink-0 text-accent-strong" /><div><p className="font-semibold">Tasks are ranked, but no robot can be safely dispatched.</p><p className="mt-1 text-xs text-text-muted">Update live robot battery, availability, obstacle, or emergency-stop telemetry to unlock a safe assignment.</p></div></div>}<div className="grid gap-4 xl:grid-cols-[minmax(0,1.45fr)_minmax(18rem,.55fr)]"><section className="ui-panel overflow-hidden"><div className="flex items-center justify-between border-b border-border-subtle px-5 py-4"><div><p className="ui-kicker">Ranked task queue</p><h2 className="mt-1 text-base font-bold">{queue.length ? `${queue.length} active task${queue.length === 1 ? '' : 's'}` : 'No active tasks'}</h2></div><Bot className="h-5 w-5 text-accent" /></div>{queue.length ? <div className="divide-y divide-border-subtle">{queue.map((task) => <TaskCard key={task.task_id} task={task} recommended={task.task_id === nextTask?.task_id} />)}</div> : <div className="grid min-h-80 place-items-center p-8 text-center"><div><Bot className="mx-auto h-7 w-7 text-text-muted" /><p className="mt-3 text-sm font-semibold">No pending delivery or service task</p><p className="mt-1 text-xs text-text-muted">New orders and guest staff requests will appear here automatically.</p></div></div>}</section><aside className="space-y-4"><section className="ui-panel p-5"><div className="flex items-center gap-3"><div className="grid h-9 w-9 place-items-center rounded-md bg-success/10 text-success"><ShieldCheck className="h-4 w-4" /></div><div><p className="ui-kicker">Dispatch status</p><p className="mt-1 text-sm font-bold">{assignedRobot ? `Robot ${assignedRobot}` : nextTask ? 'Waiting for safe robot' : 'No recommendation'}</p></div></div><p className="mt-4 text-sm leading-6 text-text-muted">{assignedRobot ? `${taskLabel(nextTask)} is selected for delivery.` : 'No invented battery reading is shown when robot telemetry is missing.'}</p></section><section className="ui-panel p-5"><div className="flex items-center gap-3"><div className="grid h-9 w-9 place-items-center rounded-md bg-accent-soft text-accent-strong"><BatteryCharging className="h-4 w-4" /></div><div><p className="ui-kicker">Deterministic safety</p><p className="mt-1 text-sm font-bold">Telemetry gate</p></div></div><p className="mt-4 text-sm leading-6 text-text-muted">The robot must be idle/available, above 20% battery, clear of obstacles, and not emergency-stopped.</p></section><section className="ui-panel p-5"><div className="flex items-center gap-3"><Navigation className="h-4 w-4 text-info" /><p className="text-sm font-bold">Robot control remains separate</p></div><p className="mt-3 text-xs leading-relaxed text-text-muted">Use Robot Control for hardware telemetry and manual movement. This page is the explainable decision layer.</p></section></aside></div>{warnings.length > 0 && <p className="text-xs text-text-muted">{warnings.join(' ')}</p>}</div>;
 }
+
+function TaskCard({ task, recommended }: { task: any; recommended: boolean }) { const reasons = (task.reasons ?? []).map(readableReason).filter((reason: string, index: number, all: string[]) => all.indexOf(reason) === index).slice(0, 3); return <article className={`ui-enter grid gap-4 px-5 py-4 md:grid-cols-[minmax(12rem,.9fr)_minmax(12rem,.85fr)_auto] md:items-center ${recommended ? 'bg-accent-soft/40' : ''}`}><div><div className="flex items-center gap-2"><p className="text-sm font-bold">{taskLabel(task)}</p>{recommended && <span className="rounded-full bg-accent px-2 py-0.5 text-[10px] font-bold text-black">NEXT</span>}</div><p className="mt-1 font-mono text-[11px] text-text-muted">Order {orderLabel(task)}</p></div><div className="flex flex-wrap gap-2"><span className="inline-flex items-center gap-1 rounded-full border border-border-subtle bg-page px-2 py-1 text-[10px] font-bold text-text-muted"><Clock3 className="h-3 w-3" />{duration(task.input?.waiting_time_minutes)} waiting</span><span className={`rounded-full px-2 py-1 text-[10px] font-bold ${task.assignable ? 'bg-success/10 text-success' : 'bg-danger/10 text-danger'}`}>{task.assignable ? task.priority_level : 'AWAITING ROBOT'}</span></div><div className="md:text-right"><p className="text-sm font-black">{Number(task.priority_score ?? 0).toFixed(1)} <span className="text-[10px] font-semibold text-text-muted">score</span></p><ul className="mt-2 space-y-1 text-xs leading-5 text-text-muted md:ml-auto md:max-w-xs">{reasons.map((reason: string) => <li key={reason}>{reason}</li>)}</ul></div></article>; }

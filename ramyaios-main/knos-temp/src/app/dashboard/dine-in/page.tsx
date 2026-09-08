@@ -293,7 +293,7 @@ export default function DineInOrdersPage() {
             Thank You For Dining With Us!
           </div>
           <div className="text-center mt-2 text-[9px] text-text-muted uppercase tracking-widest">
-            Powered by Kalvix Nexus POS
+            Powered by RAMYA
           </div>
         </div>
       )}
