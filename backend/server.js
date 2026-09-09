@@ -21,12 +21,16 @@ const menuItemRoutes = require('./src/routes/menuItemRoutes');
 const kdsRoutes = require('./src/routes/kdsRoutes');
 const fleetRoutes = require('./src/routes/fleetRoutes');
 const guestRoutes = require('./src/routes/guestInteractionRoutes');
+const analyticsRoutes = require('./src/routes/analyticsRoutes');
+const notificationRoutes = require('./src/routes/notificationRoutes');
 
 app.use('/api/menu/categories', categoryRoutes);
 app.use('/api/menu/items', menuItemRoutes);
 app.use('/api/kds', kdsRoutes);
 app.use('/api/guest', guestRoutes);
 app.use('/api/fleet', fleetRoutes);
+app.use('/api/analytics', analyticsRoutes);
+app.use('/api/notifications', notificationRoutes);
 
 
 // ==========================================
