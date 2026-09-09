@@ -77,6 +77,8 @@ export default function DashboardLayout({
     { name: 'Menu Catalog', href: '/dashboard/menu' },
     { name: 'Order Engine', href: '/dashboard/orders', isNew: true },
     { name: 'AI Analytics', href: '/dashboard/analytics', isNew: true },
+    { name: 'Guest Assistant', href: '/dashboard/guest', isNew: true },
+    { name: 'Notifications', href: '/dashboard/notifications', isNew: true },
     { name: 'Robot Fleet', href: '/dashboard/fleet', isNew: true },
     { name: 'Manual Billing', href: '/dashboard/billing' },
     { name: 'Dine-In Orders', href: '/dashboard/dine-in', count: pendingQrCount },
