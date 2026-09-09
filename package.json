@@ -1,0 +1,11 @@
+{
+  "name": "ramyaios-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run dev --prefix ramyaios-main/knos-temp",
+    "build": "npm run build --prefix ramyaios-main/knos-temp",
+    "start": "npm run start --prefix ramyaios-main/knos-temp",
+    "lint": "npm run lint --prefix ramyaios-main/knos-temp"
+  }
+}

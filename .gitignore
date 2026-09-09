@@ -1,2 +1,40 @@
-knos-temp/node_modules
-knos-temp/.next
+# Node dependencies
+node_modules/
+**/node_modules/
+
+# Next.js build output
+.next/
+**/.next/
+out/
+build/
+dist/
+
+# Vercel
+.vercel/
+**/.vercel/
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+**/.env
+**/.env.local
+
+# Python virtual environment & cache
+.venv/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# OS metadata
+.DS_Store
+Thumbs.db

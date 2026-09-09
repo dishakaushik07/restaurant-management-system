@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 node_modules/
 .env
-=======
-node_modules
-.env
->>>>>>> feature/backend
+.env.local
+*.log
