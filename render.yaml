@@ -1,25 +1,25 @@
 services:
-  # Express Backend Web Service
+  # Express Backend Web Service (100% FREE Plan)
   - type: web
     name: ramya-backend
     runtime: node
+    plan: free
     rootDir: backend
     buildCommand: npm install
     startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
-      - key: PORT
-        value: 10000
       - key: MONGODB_URI
         sync: false
       - key: JWT_SECRET
         generateValue: true
 
-  # FastAPI ML Web Service
+  # FastAPI ML Web Service (100% FREE Plan)
   - type: web
     name: ramya-ml-service
     runtime: python
+    plan: free
     rootDir: ramyaios-main/knos-temp/ml-service
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
